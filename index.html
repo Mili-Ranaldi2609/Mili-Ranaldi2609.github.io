@@ -15,19 +15,26 @@
 
     <div class="container">
         <header>
+            <!-- Botón selector de idioma -->
+            <div class="lang-switch-container">
+                <button id="lang-toggle" class="btn-lang">
+                    <i class="fa-solid fa-globe"></i> <span id="lang-text">English</span>
+                </button>
+            </div>
+
             <h1>Milagros Ranaldi</h1>
-            <p class="subtitle">Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA</p>
+            <p class="subtitle" data-i18n="subtitle">Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA</p>
         </header>
 
         <section>
-            <h2><i class="fa-solid fa-user"></i> Sobre Mí</h2>
-            <p class="about-text">
+            <h2><i class="fa-solid fa-user"></i> <span data-i18n="about_title">Sobre Mí</span></h2>
+            <p class="about-text" data-i18n="about_text">
                 Desarrolladora Full Stack especializada en arquitectura backend, optimización de procesos operativos e integración de soluciones basadas en datos. Experimentada en la creación de herramientas de automatización personalizadas (RPA), APIs RESTful y gestión de bases de datos relacionales y no relacionales.
             </p>
         </section>
 
         <section>
-            <h2><i class="fa-solid fa-code"></i> Habilidades Técnicas</h2>
+            <h2><i class="fa-solid fa-code"></i> <span data-i18n="skills_title">Habilidades Técnicas</span></h2>
             <div class="tags-container">
                 <span class="tag">Node.js</span>
                 <span class="tag">Java Spring Boot</span>
@@ -46,11 +53,11 @@
         </section>
 
         <section>
-            <h2><i class="fa-solid fa-laptop-code"></i> Proyectos Destacados</h2>
+            <h2><i class="fa-solid fa-laptop-code"></i> <span data-i18n="projects_title">Proyectos Destacados</span></h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>FullStack TodoList</h3>
-                    <p>Aplicación de gestión de tareas con arquitectura RESTful, manejo de estado global y diseño responsivo.</p>
+                    <p data-i18n="proj1_desc">Aplicación de gestión de tareas con arquitectura RESTful, manejo de estado global y diseño responsivo.</p>
                     <div class="tags-container">
                         <span class="tag">Node.js</span>
                         <span class="tag">React</span>
@@ -59,7 +66,7 @@
                 </div>
                 <div class="project-card">
                     <h3>E-commerce Backend</h3>
-                    <p>Backend escalable para Urban Vibes con autenticación segura JWT y persistencia de datos.</p>
+                    <p data-i18n="proj2_desc">Backend escalable para Urban Vibes con autenticación segura JWT y persistencia de datos.</p>
                     <div class="tags-container">
                         <span class="tag">Java</span>
                         <span class="tag">Spring Boot</span>
@@ -68,7 +75,7 @@
                 </div>
                 <div class="project-card">
                     <h3>Pin Dispatch Automation</h3>
-                    <p>Automatización de flujos operativos (RPA) mediante control visual e integración de eventos del sistema.</p>
+                    <p data-i18n="proj3_desc">Automatización de flujos operativos (RPA) mediante control visual e integración de eventos del sistema.</p>
                     <div class="tags-container">
                         <span class="tag">AutoHotkey v2</span>
                         <span class="tag">RPA</span>
@@ -78,29 +85,29 @@
         </section>
 
         <section>
-            <h2><i class="fa-solid fa-briefcase"></i> Experiencia Laboral</h2>
+            <h2><i class="fa-solid fa-briefcase"></i> <span data-i18n="exp_title">Experiencia Laboral</span></h2>
             <ul>
                 <li>
-                    <strong>DORIAL S.A.S.</strong> — Pasante de Inteligencia & Desarrollo
-                    <p class="experience-desc">Desarrollo de plataforma web centralizada y automatización de flujos de trabajo (RPA) mediante AutoHotkey v2, reduciendo errores manuales a través de reconocimiento de imágenes y manejo de eventos.</p>
+                    <strong>DORIAL S.A.S.</strong> — <span data-i18n="exp1_role">Pasante de Inteligencia & Desarrollo</span>
+                    <p class="experience-desc" data-i18n="exp1_desc">Desarrollo de plataforma web centralizada y automatización de flujos de trabajo (RPA) mediante AutoHotkey v2, reduciendo errores manuales a través de reconocimiento de imágenes y manejo de eventos.</p>
                 </li>
             </ul>
         </section>
 
         <section>
-            <h2><i class="fa-solid fa-graduation-cap"></i> Educación</h2>
+            <h2><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="edu_title">Educación</span></h2>
             <ul>
                 <li>
-                    <strong>Tecnicatura Universitaria en Programación</strong> — Universidad Tecnológica Nacional (UTN)
+                    <strong data-i18n="edu1_title">Tecnicatura Universitaria en Programación</strong> — Universidad Tecnológica Nacional (UTN)
                 </li>
                 <li>
-                    <strong>Data Science & AI Pipeline</strong> — Cursado en progreso <span class="badge-ongoing">En Curso</span>
+                    <strong>Data Science & AI Pipeline</strong> — <span data-i18n="edu2_status">Cursado en progreso</span> <span class="badge-ongoing" data-i18n="badge_ongoing">En Curso</span>
                 </li>
             </ul>
         </section>
 
         <section>
-            <h2><i class="fa-solid fa-paper-plane"></i> Contacto y Perfiles</h2>
+            <h2><i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact_title">Contacto y Perfiles</span></h2>
             <div class="contact-links">
                 <a href="https://github.com/Mili-Ranaldi2609" target="_blank" class="btn-link">
                     <i class="fa-brands fa-github"></i> GitHub
@@ -115,5 +122,7 @@
         </section>
     </div>
 
+    <!-- Script de traducciones -->
+    <script src="script.js"></script>
 </body>
 </html>
