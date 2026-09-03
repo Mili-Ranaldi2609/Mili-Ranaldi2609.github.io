@@ -218,3 +218,32 @@ li strong {
     border-color: transparent;
     box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
 }
+/* Botón selector de idioma */
+.lang-switch-container {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.btn-lang {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-lang:hover {
+    background: var(--gradient);
+    border-color: transparent;
+    color: #fff;
+    transform: scale(1.05);
+}
