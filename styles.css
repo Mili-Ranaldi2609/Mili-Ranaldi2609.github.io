@@ -247,3 +247,30 @@ li strong {
     color: #fff;
     transform: scale(1.05);
 }
+/* Estilos para enlaces dentro de las tarjetas de proyectos */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+    color: var(--accent-violet);
+    transform: translateX(3px);
+}
+
+.icon-sm {
+    font-size: 0.75rem;
+}
