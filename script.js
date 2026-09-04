@@ -8,6 +8,7 @@ const translations = {
         proj1_desc: "Aplicación de gestión de tareas con arquitectura RESTful, manejo de estado global y diseño responsivo.",
         proj2_desc: "Backend escalable para Urban Vibes con autenticación segura JWT y persistencia de datos.",
         proj3_desc: "Automatización de flujos operativos (RPA) mediante control visual e integración de eventos del sistema.",
+        view_project: "Ver Proyecto",
         exp_title: "Experiencia Laboral",
         exp1_role: "Pasante de Inteligencia & Desarrollo",
         exp1_desc: "Desarrollo de plataforma web centralizada y automatización de flujos de trabajo (RPA) mediante AutoHotkey v2, reduciendo errores manuales a través de reconocimiento de imágenes y manejo de eventos.",
@@ -26,6 +27,7 @@ const translations = {
         proj1_desc: "Task management application featuring RESTful architecture, global state management, and responsive design.",
         proj2_desc: "Scalable backend for Urban Vibes with secure JWT authentication and data persistence.",
         proj3_desc: "Operational workflow automation (RPA) using visual control and system event integration.",
+        view_project: "View Project",
         exp_title: "Work Experience",
         exp1_role: "Intelligence & Development Intern",
         exp1_desc: "Built a centralized web platform and automated workflows (RPA) using AutoHotkey v2, reducing manual errors through image recognition and event handling.",
@@ -47,11 +49,9 @@ function updateLanguage(lang) {
         }
     });
 
-    // Actualiza el texto del botón al idioma opuesto
     const langText = document.getElementById('lang-text');
     langText.textContent = lang === 'es' ? 'English' : 'Español';
     
-    // Guarda la preferencia
     localStorage.setItem('preferred_lang', lang);
     currentLang = lang;
 }
@@ -61,7 +61,6 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
     updateLanguage(nextLang);
 });
 
-// Inicializar al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(currentLang);
 });
