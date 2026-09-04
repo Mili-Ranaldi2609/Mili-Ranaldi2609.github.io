@@ -64,3 +64,23 @@ document.getElementById('lang-toggle').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(currentLang);
 });
+// Funcionalidad para copiar el email al hacer clic
+document.getElementById('copy-email-btn').addEventListener('click', function() {
+    const email = 'mranaldi44@gmail.com';
+    navigator.clipboard.writeText(email).then(() => {
+        const emailSpan = document.getElementById('email-text');
+        const originalText = emailSpan.textContent;
+        
+        // Mensaje de confirmación según el idioma
+        const copiedMessage = currentLang === 'es' ? '¡Copiado!' : 'Copied!';
+        emailSpan.textContent = copiedMessage;
+        
+        // Vuelve al correo original después de 2 segundos
+        setTimeout(() => {
+            emailSpan.textContent = email;
+        }, 2000);
+    }).catch(err => {
+        // Fallback en caso de que falle la copia automática
+        window.location.href = 'mailto:mranaldi44@gmail.com';
+    });
+});
