@@ -1,6 +1,5 @@
 const translations = {
     es: {
-        subtitle: "Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA",
         about_title: "Sobre Mí",
         about_text: "Desarrolladora Full Stack especializada en arquitectura backend, optimización de procesos operativos e integración de soluciones basadas en datos. Experimentada en la creación de herramientas de automatización personalizadas (RPA), APIs RESTful y gestión de bases de datos relacionales y no relacionales.",
         skills_title: "Habilidades Técnicas",
@@ -23,11 +22,9 @@ const translations = {
         edu_specialization: "ESPECIALIZACIÓN",
         edu_subtitle: "Formación académica",
         badge_ongoing: "En Curso",
-        contact_title: "Contacto y Perfiles",
         hero_role: "Full Stack Developer · Automation · Data Science",
         hero_description: "Desarrollo soluciones web, automatizaciones e integraciones orientadas a resolver problemas reales y optimizar procesos.",
         hero_projects: "Ver proyectos",
-        hero_cv: "Ver CV",
         about_education: "Técnica Universitaria en Programación · UTN",
         project_metric: "mejora en eficiencia operativa",
         project_progress: "En desarrollo",
@@ -38,7 +35,6 @@ const translations = {
         contact_cv: "Ver currículum",
     },
     en: {
-        subtitle: "Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA",
         about_title: "About Me",
         about_text: "Full Stack Developer specialized in backend architecture, operational process optimization, and data-driven solutions integration. Experienced in building custom automation tools (RPA), RESTful APIs, and managing relational and non-relational databases.",
         skills_title: "Technical Skills",
@@ -61,11 +57,9 @@ const translations = {
         edu_specialization: "SPECIALIZATION",
         edu_subtitle: "Academic background",
         badge_ongoing: "In Progress",
-        contact_title: "Contact & Profiles",
         hero_role: "Full Stack Developer · Automation · Data Science",
         hero_description: "I build web solutions, automations, and integrations focused on solving real problems and optimizing processes.",
         hero_projects: "View projects",
-        hero_cv: "View CV",
         about_education: "Higher Technical Degree in Programming · UTN",
         project_metric: "improvement in operational efficiency",
         project_progress: "In development",
