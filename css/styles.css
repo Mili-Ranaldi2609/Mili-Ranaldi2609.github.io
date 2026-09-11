@@ -20,7 +20,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     line-height: 1.6;
-    padding: 2rem 1rem;
+    padding: 0;
 }
 
 .container {
