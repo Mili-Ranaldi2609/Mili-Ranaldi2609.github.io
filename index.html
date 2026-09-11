@@ -223,52 +223,190 @@
 
 </section>
 
-        <section id="projects">
-            <h2><i class="fa-solid fa-laptop-code"></i> <span data-i18n="projects_title">Proyectos Destacados</span></h2>
-            <div class="projects-grid">
-                <!-- Proyecto 1 -->
-                <div class="project-card">
+       <section id="projects" class="projects-section">
+
+    <div class="section-heading">
+        <span class="section-number">03.</span>
+        <h2 data-i18n="projects_title">Proyectos Destacados</h2>
+        <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+
+        <!-- Proyecto 1 -->
+        <article class="project-card project-featured">
+
+            <div class="project-top">
+                <div>
+                    <span class="project-type">FULL STACK</span>
                     <h3>FullStack TodoList</h3>
-                    <p data-i18n="proj1_desc">Aplicación de gestión de tareas con arquitectura RESTful, manejo de estado global y diseño responsivo.</p>
-                    <div class="tags-container">
-                        <span class="tag">Node.js</span>
-                        <span class="tag">React</span>
-                        <span class="tag">MongoDB</span>
-                    </div>
-                    <a href="https://github.com/stars/Mili-Ranaldi2609/lists/todolist-back-front" target="_blank" class="project-link">
-                        <i class="fa-brands fa-github"></i> <span data-i18n="view_project">Ver Proyecto</span> <i class="fa-solid fa-arrow-up-right-from-square icon-sm"></i>
-                    </a>
                 </div>
 
-                <!-- Proyecto 2 -->
-                <div class="project-card">
-                    <h3>E-commerce Backend</h3>
-                    <p data-i18n="proj2_desc">Backend escalable para Urban Vibes con autenticación segura JWT y persistencia de datos.</p>
-                    <div class="tags-container">
-                        <span class="tag">Java</span>
-                        <span class="tag">Spring Boot</span>
-                        <span class="tag">MySQL</span>
-                    </div>
-                    <a href="https://github.com/stars/Mili-Ranaldi2609/lists/ecommerce-zapatillas" target="_blank" class="project-link">
-                        <i class="fa-brands fa-github"></i> <span data-i18n="view_project">Ver Proyecto</span> <i class="fa-solid fa-arrow-up-right-from-square icon-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Proyecto 3 -->
-                <div class="project-card">
-                    <h3>Pin Dispatch Automation</h3>
-                    <p data-i18n="proj3_desc">Automatización de flujos operativos (RPA) mediante control visual e integración de eventos del sistema.</p>
-                    <div class="tags-container">
-                        <span class="tag">AutoHotkey v2</span>
-                        <span class="tag">RPA</span>
-                    </div>
-                    <a href="https://github.com/stars/Mili-Ranaldi2609/lists/registrosscore" target="_blank" class="project-link">
-                        <i class="fa-brands fa-github"></i> <span data-i18n="view_project">Ver Proyecto</span> <i class="fa-solid fa-arrow-up-right-from-square icon-sm"></i>
-                    </a>
+                <div class="project-icon">
+                    <i class="fa-solid fa-folder-open"></i>
                 </div>
             </div>
-        </section>
 
+            <p class="project-description" data-i18n="proj1_desc">
+                Aplicación de gestión de tareas con arquitectura RESTful,
+                manejo de estado global y diseño responsivo.
+            </p>
+
+            <div class="project-structure">
+                <span>src/</span>
+                <span>├── frontend/</span>
+                <span>├── backend/</span>
+                <span>└── database/</span>
+            </div>
+
+            <div class="project-tech">
+                <span>React</span>
+                <span>TypeScript</span>
+                <span>Node.js</span>
+                <span>MongoDB</span>
+            </div>
+
+            <div class="project-footer">
+                <a href="https://github.com/stars/Mili-Ranaldi2609/lists/todolist-back-front"
+                   target="_blank"
+                   class="project-link">
+
+                    <i class="fa-brands fa-github"></i>
+                    <span data-i18n="view_project">Ver Proyecto</span>
+
+                </a>
+            </div>
+
+        </article>
+
+
+        <!-- Proyecto 2 -->
+        <article class="project-card">
+
+            <div class="project-top">
+                <div>
+                    <span class="project-type">BACKEND</span>
+                    <h3>Urban Vibes</h3>
+                </div>
+
+                <div class="project-icon">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+            </div>
+
+            <p class="project-description" data-i18n="proj2_desc">
+                Backend escalable para Urban Vibes con autenticación segura JWT
+                y persistencia de datos.
+            </p>
+
+            <div class="project-structure">
+                <span>api/</span>
+                <span>├── auth/</span>
+                <span>├── services/</span>
+                <span>└── database/</span>
+            </div>
+
+            <div class="project-tech">
+                <span>Java</span>
+                <span>Spring Boot</span>
+                <span>JWT</span>
+                <span>MySQL</span>
+            </div>
+
+            <div class="project-footer">
+                <a href="https://github.com/stars/Mili-Ranaldi2609/lists/ecommerce-zapatillas"
+                   target="_blank"
+                   class="project-link">
+
+                    <i class="fa-brands fa-github"></i>
+                    <span data-i18n="view_project">Ver Proyecto</span>
+
+                </a>
+            </div>
+
+        </article>
+
+
+        <!-- Proyecto 3 -->
+        <article class="project-card">
+
+            <div class="project-top">
+                <div>
+                    <span class="project-type">AUTOMATION</span>
+                    <h3>Score Automation</h3>
+                </div>
+
+                <div class="project-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+            </div>
+
+            <p class="project-description" data-i18n="proj3_desc">
+                Automatización de flujos operativos mediante control visual,
+                integración de sistemas y manejo de eventos.
+            </p>
+
+            <div class="project-metric">
+                <span class="metric-number">53%</span>
+                <span class="metric-label" data-i18n="project_metric">
+                    mejora en eficiencia operativa
+                </span>
+            </div>
+
+            <div class="project-tech">
+                <span>AutoHotkey v2</span>
+                <span>RPA</span>
+                <span>REST API</span>
+            </div>
+
+            <div class="project-footer">
+                <a href="https://github.com/stars/Mili-Ranaldi2609/lists/registrosscore"
+                   target="_blank"
+                   class="project-link">
+
+                    <i class="fa-brands fa-github"></i>
+                    <span data-i18n="view_project">Ver Proyecto</span>
+
+                </a>
+            </div>
+
+        </article>
+
+
+        <!-- Proyecto 4 -->
+        <article class="project-card project-progress">
+
+            <div class="project-top">
+                <div>
+                    <span class="project-type">DATA SCIENCE</span>
+                    <h3>Cuenca Cuyana</h3>
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    <span data-i18n="project_progress">En desarrollo</span>
+                </div>
+            </div>
+
+            <p class="project-description" data-i18n="proj4_desc">
+                Análisis de la dinámica productiva de hidrocarburos
+                en la Cuenca Cuyana.
+            </p>
+
+            <div class="project-tech">
+                <span>Python</span>
+                <span>Data Science</span>
+            </div>
+
+            <div class="project-footer project-footer-muted">
+                <span>// currently building</span>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
         <section id="experience">
             <h2><i class="fa-solid fa-briefcase"></i> <span data-i18n="exp_title">Experiencia Laboral</span></h2>
             <ul>
