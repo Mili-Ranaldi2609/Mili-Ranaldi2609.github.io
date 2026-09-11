@@ -860,3 +860,129 @@ li strong {
         min-height: auto;
     }
 }
+/* Experience */
+.experience-card {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 2rem;
+
+    background: #0b1120;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.experience-meta {
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.experience-date {
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    color: var(--primary-blue);
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+}
+
+.experience-company {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.experience-role {
+    color: var(--accent-violet);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.experience-location {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.experience-command {
+    display: flex;
+    gap: 0.6rem;
+
+    margin-bottom: 1.2rem;
+
+    color: var(--text-primary);
+    font-family: "Courier New", monospace;
+    font-size: 0.82rem;
+}
+
+.experience-list {
+    list-style: none;
+    margin-bottom: 1.2rem;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 1.3rem;
+    margin-bottom: 0.75rem;
+
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 0.9rem;
+}
+
+.experience-list li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+
+    color: var(--primary-blue);
+    font-family: "Courier New", monospace;
+}
+
+.experience-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.experience-tech span {
+    padding: 0.4rem 0.65rem;
+
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 7px;
+
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+}
+
+.experience-card {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 768px) {
+
+    .experience-card {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-meta {
+        padding-right: 0;
+        padding-bottom: 1.2rem;
+
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+}
