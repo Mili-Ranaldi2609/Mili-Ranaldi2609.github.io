@@ -691,8 +691,8 @@ li strong {
     background: #0b1120;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 16px;
-    padding: 1.5rem;
-    min-height: 330px;
+    padding: 1.25rem;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
@@ -747,24 +747,24 @@ li strong {
 
 .project-description {
     color: var(--text-secondary);
-    line-height: 1.75;
-    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
 }
 
 .project-structure {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.15rem;
 
-    padding: 0.8rem 1rem;
-    margin-bottom: 1.2rem;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.9rem;
 
     background: rgba(255, 255, 255, 0.025);
     border-radius: 9px;
 
     color: #7dd3fc;
     font-family: "Courier New", monospace;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
 }
 
 .project-tech {
@@ -787,11 +787,10 @@ li strong {
 }
 
 .project-footer {
-    margin-top: 1.2rem;
-    padding-top: 1rem;
+    margin-top: 0.9rem;
+    padding-top: 0.8rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-
 .projects-section .project-link {
     margin: 0;
 }
@@ -799,9 +798,9 @@ li strong {
 .project-metric {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
-    padding: 0.9rem;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+    padding: 0.7rem 0.8rem;
 
     background: linear-gradient(
         135deg,
@@ -815,10 +814,9 @@ li strong {
 
 .metric-number {
     color: var(--primary-blue);
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     font-weight: 700;
 }
-
 .metric-label {
     color: var(--text-secondary);
     font-size: 0.78rem;
