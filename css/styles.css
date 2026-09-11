@@ -274,3 +274,62 @@ li strong {
 .icon-sm {
     font-size: 0.75rem;
 }
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: monospace;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .nav-links a {
+        font-size: 0.78rem;
+    }
+}
