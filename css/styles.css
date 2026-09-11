@@ -570,6 +570,7 @@ li strong {
     grid-template-columns: 1.15fr 0.85fr;
     gap: 2.5rem;
     align-items: center;
+    align-items: start;
 }
 
 .about-text p {
@@ -585,6 +586,7 @@ li strong {
     font-family: "Courier New", monospace;
     font-size: 0.82rem;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    padding: 1.2rem;
 }
 
 .terminal-line {
