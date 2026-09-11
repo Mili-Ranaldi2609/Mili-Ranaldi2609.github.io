@@ -27,15 +27,92 @@
 </nav>
     <div class="container">
         <header>
-            <!-- Botón selector de idioma -->
-            <div class="lang-switch-container">
-                <button id="lang-toggle" class="btn-lang">
-                    <i class="fa-solid fa-globe"></i> <span id="lang-text">English</span>
-                </button>
-            </div>
+            <header class="hero">
+    <!-- Botón selector de idioma -->
+    <div class="lang-switch-container">
+        <button id="lang-toggle" class="btn-lang">
+            <i class="fa-solid fa-globe"></i>
+            <span id="lang-text">English</span>
+        </button>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-text">
+            <span class="hero-label">Hello World, I'm</span>
 
             <h1>Milagros Ranaldi</h1>
-            <p class="subtitle" data-i18n="subtitle">Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA</p>
+
+            <p class="hero-role" data-i18n="hero_role">
+                Full Stack Developer · Automation · Data Science
+            </p>
+
+            <p class="hero-description" data-i18n="hero_description">
+                Desarrollo soluciones web, automatizaciones e integraciones orientadas a resolver problemas reales y optimizar procesos.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">
+                    <i class="fa-solid fa-code"></i>
+                    <span data-i18n="hero_projects">Ver proyectos</span>
+                </a>
+
+                <a href="assets/docs/cv-milagros-ranaldi.pdf" target="_blank" class="btn-secondary">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span data-i18n="hero_cv">Ver CV</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="code-window">
+            <div class="code-window-header">
+                <div class="window-controls">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <span class="code-file-name">developer.js</span>
+            </div>
+
+            <div class="code-content">
+                <div>
+                    <span class="code-keyword">const</span>
+                    <span class="code-variable"> developer</span>
+                    <span class="code-symbol"> = {</span>
+                </div>
+
+                <div class="code-line">
+                    <span class="code-property">name</span>:
+                    <span class="code-string">"Milagros Ranaldi"</span>,
+                </div>
+
+                <div class="code-line">
+                    <span class="code-property">role</span>:
+                    <span class="code-string">"Full Stack Developer"</span>,
+                </div>
+
+                <div class="code-line">
+                    <span class="code-property">focus</span>:
+                    <span class="code-symbol">[</span>
+                    <span class="code-string">"Web"</span>,
+                    <span class="code-string">"Automation"</span>,
+                    <span class="code-string">"Data"</span>
+                    <span class="code-symbol">]</span>,
+                </div>
+
+                <div class="code-line">
+                    <span class="code-property">location</span>:
+                    <span class="code-string">"Mendoza, Argentina"</span>
+                </div>
+
+                <div>
+                    <span class="code-symbol">};</span>
+                    <span class="typing-cursor">|</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
         </header>
 
         <section id="about">
