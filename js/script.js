@@ -18,9 +18,10 @@ const translations = {
         badge_ongoing: "En Curso",
         contact_title: "Contacto y Perfiles",
         hero_role: "Full Stack Developer · Automation · Data Science",
-hero_description: "Desarrollo soluciones web, automatizaciones e integraciones orientadas a resolver problemas reales y optimizar procesos.",
-hero_projects: "Ver proyectos",
-hero_cv: "Ver CV",
+        hero_description: "Desarrollo soluciones web, automatizaciones e integraciones orientadas a resolver problemas reales y optimizar procesos.",
+        hero_projects: "Ver proyectos",
+        hero_cv: "Ver CV",
+        about_education: "Técnica Universitaria en Programación · UTN",
     },
     en: {
         subtitle: "Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA",
@@ -41,9 +42,10 @@ hero_cv: "Ver CV",
         badge_ongoing: "In Progress",
         contact_title: "Contact & Profiles",
         hero_role: "Full Stack Developer · Automation · Data Science",
-hero_description: "I build web solutions, automations, and integrations focused on solving real problems and optimizing processes.",
-hero_projects: "View projects",
-hero_cv: "View CV",
+        hero_description: "I build web solutions, automations, and integrations focused on solving real problems and optimizing processes.",
+        hero_projects: "View projects",
+        hero_cv: "View CV",
+        about_education: "Higher Technical Degree in Programming · UTN",
     }
 };
 
