@@ -59,15 +59,6 @@ section:hover {
     box-shadow: 0 8px 30px rgba(168, 85, 247, 0.15);
 }
 
-h2 {
-    font-size: 1.4rem;
-    color: var(--primary-blue);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
 .about-text {
     color: var(--text-secondary);
 }
@@ -1416,6 +1407,9 @@ li strong {
         background 0.25s ease;
 }
 
+.contact-item > div:nth-child(2) {
+    min-width: 0;
+}
 .contact-item:hover {
     transform: translateY(-3px);
     border-color: rgba(56, 189, 248, 0.35);
@@ -1494,6 +1488,12 @@ li strong {
     transform: scale(1.08);
 }
 
+.contact-value {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
 @media (max-width: 850px) {
     .contact-content {
         grid-template-columns: 1fr;
