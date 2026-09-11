@@ -679,3 +679,186 @@ li strong {
         grid-template-columns: 1fr;
     }
 }
+/* Projects */
+.projects-section .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.3rem;
+}
+
+.projects-section .project-card {
+    position: relative;
+    background: #0b1120;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 330px;
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.projects-section .project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(168, 85, 247, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.project-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.project-type {
+    display: block;
+    color: var(--accent-violet);
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+}
+
+.project-card h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.project-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary-blue);
+    background: rgba(56, 189, 248, 0.07);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+.project-description {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+}
+
+.project-structure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 9px;
+
+    color: #7dd3fc;
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.project-tech span {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-family: "Courier New", monospace;
+}
+
+.project-tech span::before {
+    content: "#";
+    color: var(--primary-blue);
+    margin-right: 2px;
+}
+
+.project-footer {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.projects-section .project-link {
+    margin: 0;
+}
+
+.project-metric {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    padding: 0.9rem;
+
+    background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.08),
+        rgba(168, 85, 247, 0.08)
+    );
+
+    border: 1px solid rgba(168, 85, 247, 0.16);
+    border-radius: 10px;
+}
+
+.metric-number {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.project-progress {
+    border-style: dashed !important;
+}
+
+.project-status {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #86efac;
+    box-shadow: 0 0 10px rgba(134, 239, 172, 0.5);
+}
+
+.project-footer-muted {
+    color: var(--text-secondary);
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+}
+
+@media (max-width: 768px) {
+    .projects-section .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-section .project-card {
+        min-height: auto;
+    }
+}
