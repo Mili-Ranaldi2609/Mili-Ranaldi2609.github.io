@@ -36,13 +36,6 @@ h1 {
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
-
-p.subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    font-weight: 300;
-}
-
 /* Secciones */
 section {
     background: var(--card-bg);
@@ -63,49 +56,6 @@ section:hover {
     color: var(--text-secondary);
 }
 
-/* Tags de habilidades */
-.tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-}
-
-.tag {
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--primary-blue);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 0.4rem 0.9rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.tag:hover {
-    background: var(--gradient);
-    color: #fff;
-    border-color: transparent;
-    transform: scale(1.05);
-}
-
-/* Grid de Proyectos */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.2rem;
-}
-
-.project-card {
-    background: rgba(15, 23, 42, 0.6);
-    padding: 1.2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: border-color 0.3s ease;
-}
-
-.project-card:hover {
-    border-color: var(--accent-violet);
-}
 
 .project-card h3 {
     color: var(--text-primary);
@@ -117,80 +67,6 @@ section:hover {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
-}
-
-/* Listas e Ítems */
-ul {
-    list-style: none;
-}
-
-li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-secondary);
-}
-
-li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--accent-violet);
-    font-weight: bold;
-}
-
-li strong {
-    color: var(--text-primary);
-}
-
-.experience-desc {
-    font-size: 0.88rem;
-    margin-top: 0.3rem;
-}
-
-.badge-ongoing {
-    background: rgba(168, 85, 247, 0.2);
-    color: var(--accent-violet);
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    margin-left: 0.5rem;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-/* Botones de Contacto / Links */
-.contact-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.btn-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.btn-link:hover {
-    background: var(--gradient);
-    color: #fff;
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-}
-/* Botón selector de idioma */
-.lang-switch-container {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
 }
 
 .btn-lang {
@@ -239,9 +115,6 @@ li strong {
     transform: translateX(3px);
 }
 
-.icon-sm {
-    font-size: 0.75rem;
-}
 /* Navbar */
 .navbar {
     position: sticky;
@@ -563,7 +436,6 @@ li strong {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     gap: 2.5rem;
-    align-items: center;
     align-items: start;
 }
 
@@ -576,7 +448,6 @@ li strong {
     background: #0b1120;
     border: 1px solid rgba(56, 189, 248, 0.15);
     border-radius: 12px;
-    padding: 1.4rem;
     font-family: "Courier New", monospace;
     font-size: 0.82rem;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -821,9 +692,9 @@ li strong {
     border-radius: 16px;
     padding: 1.25rem;
     min-height: 0;
-
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     transition:
         transform 0.3s ease,
@@ -998,6 +869,11 @@ li strong {
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 16px;
     padding: 1.5rem;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .experience-meta {
@@ -1087,12 +963,7 @@ li strong {
     font-size: 0.72rem;
 }
 
-.experience-card {
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
+
 
 .experience-card:hover {
     transform: translateY(-4px);
