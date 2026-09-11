@@ -623,63 +623,197 @@ li strong {
         max-width: none;
     }
 }
-/* Skills */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.2rem;
-}
+/* =========================
+   SKILLS
+========================= */
 
-.skill-card {
-    background: #0b1120;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    padding: 1.4rem;
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.skill-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(168, 85, 247, 0.45);
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22);
-}
-
-.skill-card-title {
-    color: var(--primary-blue);
-    font-family: "Courier New", monospace;
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.skill-list {
-    display: flex;
+.skills-heading {
     flex-wrap: wrap;
-    gap: 0.6rem;
 }
 
-.skill-list span {
+.skills-subtitle {
+    margin-left: auto;
+
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 0.45rem 0.75rem;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    transition: all 0.25s ease;
+
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
 }
 
-.skill-list span:hover {
-    color: var(--text-primary);
-    border-color: rgba(56, 189, 248, 0.35);
+
+/* Contenedor de filas */
+.skills-rows {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Cada categoría */
+.skill-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+
+    align-items: center;
+    gap: 1.5rem;
+
+    padding: 1.35rem 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skill-row:first-child {
+    padding-top: 0;
+}
+
+.skill-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+/* Categoría izquierda */
+.skill-category {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    padding-right: 1.5rem;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skill-category-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary-blue);
+
     background: rgba(56, 189, 248, 0.08);
+
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 10px;
+
+    font-size: 1rem;
 }
 
+.skill-category h3 {
+    color: var(--text-primary);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    margin-bottom: 0.15rem;
+}
+
+.skill-category span {
+    color: var(--text-secondary);
+
+    font-size: 0.65rem;
+}
+
+
+/* Tecnologías */
+.skill-technologies {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 0.7rem;
+}
+
+
+/* Botón tecnología */
+.tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    min-height: 45px;
+
+    padding: 0.65rem 0.9rem;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 0.78rem;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.tech-pill i {
+    font-size: 1.25rem;
+}
+
+
+/* Algunos Devicons negros necesitan color manual */
+.tech-pill .devicon-express-original,
+.tech-pill .devicon-prisma-original,
+.tech-pill .devicon-github-original {
+    color: var(--text-primary);
+}
+
+
+/* Hover */
+.tech-pill:hover {
+    transform: translateY(-3px);
+
+    color: var(--text-primary);
+
+    border-color: rgba(56, 189, 248, 0.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(56, 189, 248, 0.06),
+            rgba(168, 85, 247, 0.06)
+        );
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Responsive */
 @media (max-width: 768px) {
-    .skills-grid {
+
+    .skills-subtitle {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.35rem;
+    }
+
+    .skill-row {
         grid-template-columns: 1fr;
+
+        gap: 1rem;
+
+        padding: 1.4rem 0;
+    }
+
+    .skill-category {
+        border-right: none;
+
+        padding-right: 0;
+    }
+
+    .skill-technologies {
+        gap: 0.55rem;
+    }
+
+    .tech-pill {
+        padding: 0.55rem 0.75rem;
     }
 }
 /* Projects */
