@@ -8,8 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Devicon - iconos de tecnologías -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <!-- Archivo CSS externo -->
     <link rel="stylesheet" href="css/styles.css">
+    
 </head>
 <body>
     <nav class="navbar">
@@ -168,57 +171,198 @@
     </div>
 </section>
 
- <section id="skills" class="skills-section">
+<section id="skills" class="skills-section">
 
-    <div class="section-heading">
+    <div class="section-heading skills-heading">
         <span class="section-number">02.</span>
-        <h2 data-i18n="skills_title">Habilidades Técnicas</h2>
+
+        <h2 data-i18n="skills_title">
+            Habilidades Técnicas
+        </h2>
+
         <div class="section-line"></div>
+
+        <span class="skills-subtitle"
+              data-i18n="skills_subtitle">
+            Tecnologías con las que trabajo
+        </span>
     </div>
 
-    <div class="skills-grid">
 
-        <article class="skill-card">
-            <div class="skill-card-title">&lt;Frontend /&gt;</div>
-            <div class="skill-list">
-                <span>React</span>
-                <span>TypeScript</span>
-                <span>Redux</span>
-                <span>HTML</span>
-                <span>CSS</span>
-            </div>
-        </article>
+    <div class="skills-rows">
 
-        <article class="skill-card">
-            <div class="skill-card-title">&lt;Backend /&gt;</div>
-            <div class="skill-list">
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>Nest.js</span>
-                <span>Java Spring Boot</span>
-                <span>Python</span>
-            </div>
-        </article>
+        <!-- FRONTEND -->
+        <div class="skill-row">
 
-        <article class="skill-card">
-            <div class="skill-card-title">&lt;Databases /&gt;</div>
-            <div class="skill-list">
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>MongoDB</span>
-                <span>Prisma</span>
-            </div>
-        </article>
+            <div class="skill-category">
+                <div class="skill-category-icon">
+                    <i class="fa-solid fa-display"></i>
+                </div>
 
-        <article class="skill-card">
-            <div class="skill-card-title">&lt;Tools /&gt;</div>
-            <div class="skill-list">
-                <span>Git / GitHub</span>
-                <span>Docker</span>
-                <span>Postman</span>
-                <span>AutoHotkey v2</span>
+                <div>
+                    <h3>Frontend</h3>
+                    <span>UI · Web Apps · Interfaces</span>
+                </div>
             </div>
-        </article>
+
+            <div class="skill-technologies">
+
+                <div class="tech-pill">
+                    <i class="devicon-react-original colored"></i>
+                    <span>React</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-typescript-plain colored"></i>
+                    <span>TypeScript</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-redux-original colored"></i>
+                    <span>Redux</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-html5-plain colored"></i>
+                    <span>HTML</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-css3-plain colored"></i>
+                    <span>CSS</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACKEND -->
+        <div class="skill-row">
+
+            <div class="skill-category">
+                <div class="skill-category-icon">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+
+                <div>
+                    <h3>Backend</h3>
+                    <span>APIs · Services · Logic</span>
+                </div>
+            </div>
+
+            <div class="skill-technologies">
+
+                <div class="tech-pill">
+                    <i class="devicon-nodejs-plain colored"></i>
+                    <span>Node.js</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-express-original"></i>
+                    <span>Express</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-nestjs-original colored"></i>
+                    <span>Nest.js</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-spring-original colored"></i>
+                    <span>Spring Boot</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-python-plain colored"></i>
+                    <span>Python</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATABASES -->
+        <div class="skill-row">
+
+            <div class="skill-category">
+                <div class="skill-category-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <div>
+                    <h3>Databases</h3>
+                    <span>Data · Storage · ORM</span>
+                </div>
+            </div>
+
+            <div class="skill-technologies">
+
+                <div class="tech-pill">
+                    <i class="devicon-postgresql-plain colored"></i>
+                    <span>PostgreSQL</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-mysql-original colored"></i>
+                    <span>MySQL</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-mongodb-plain colored"></i>
+                    <span>MongoDB</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-prisma-original"></i>
+                    <span>Prisma</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLS -->
+        <div class="skill-row">
+
+            <div class="skill-category">
+                <div class="skill-category-icon">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+
+                <div>
+                    <h3>Tools</h3>
+                    <span>DevOps · Productivity</span>
+                </div>
+            </div>
+
+            <div class="skill-technologies">
+
+                <div class="tech-pill">
+                    <i class="devicon-github-original"></i>
+                    <span>Git / GitHub</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-docker-plain colored"></i>
+                    <span>Docker</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="devicon-postman-plain colored"></i>
+                    <span>Postman</span>
+                </div>
+
+                <div class="tech-pill">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <span>AutoHotkey v2</span>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
