@@ -56,19 +56,6 @@ section:hover {
     color: var(--text-secondary);
 }
 
-
-.project-card h3 {
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.project-card p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-}
-
 .btn-lang {
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
@@ -98,22 +85,6 @@ section:hover {
     justify-content: space-between;
 }
 
-.project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 1rem;
-    color: var(--primary-blue);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.project-link:hover {
-    color: var(--accent-violet);
-    transform: translateX(3px);
-}
 
 /* Navbar */
 .navbar {
@@ -726,6 +697,7 @@ section:hover {
 }
 
 .project-card h3 {
+    color: var(--text-primary);
     font-size: 1.2rem;
     margin: 0;
 }
@@ -746,6 +718,7 @@ section:hover {
 
 .project-description {
     color: var(--text-secondary);
+    font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 0.9rem;
 }
@@ -791,7 +764,26 @@ section:hover {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 .projects-section .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
     margin: 0;
+
+    color: var(--primary-blue);
+    text-decoration: none;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    transition:
+        color 0.3s ease,
+        transform 0.2s ease;
+}
+
+.projects-section .project-link:hover {
+    color: var(--accent-violet);
+    transform: translateX(3px);
 }
 
 .project-metric {
