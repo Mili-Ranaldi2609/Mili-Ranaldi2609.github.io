@@ -22,6 +22,9 @@ const translations = {
         hero_projects: "Ver proyectos",
         hero_cv: "Ver CV",
         about_education: "Técnica Universitaria en Programación · UTN",
+        project_metric: "mejora en eficiencia operativa",
+        project_progress: "En desarrollo",
+        proj4_desc: "Análisis de la dinámica productiva de hidrocarburos en la Cuenca Cuyana.",
     },
     en: {
         subtitle: "Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA",
@@ -46,6 +49,9 @@ const translations = {
         hero_projects: "View projects",
         hero_cv: "View CV",
         about_education: "Higher Technical Degree in Programming · UTN",
+        project_metric: "improvement in operational efficiency",
+        project_progress: "In development",
+        proj4_desc: "Analysis of hydrocarbon production dynamics in the Cuyo Basin.",
     }
 };
 
