@@ -268,19 +268,16 @@ li strong {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0.9rem 1.5rem;
-
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     gap: 1.5rem;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 1rem;
-    flex: 1;
 }
 .nav-logo {
     color: var(--primary-blue);
