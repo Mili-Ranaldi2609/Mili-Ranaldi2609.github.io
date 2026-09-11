@@ -30,6 +30,10 @@ const translations = {
         project_metric: "mejora en eficiencia operativa",
         project_progress: "En desarrollo",
         proj4_desc: "Análisis de la dinámica productiva de hidrocarburos en la Cuenca Cuyana.",
+        contact_title: "Contacto",
+        contact_heading: "¿Construimos algo juntos?",
+        contact_text: "Estoy abierta a nuevas oportunidades, proyectos y colaboraciones relacionadas con desarrollo web, automatización y datos.",
+        contact_cv: "Ver currículum",
     },
     en: {
         subtitle: "Full Stack & Data Engineer | Node.js, Java Spring Boot, React & RPA",
@@ -62,6 +66,10 @@ const translations = {
         project_metric: "improvement in operational efficiency",
         project_progress: "In development",
         proj4_desc: "Analysis of hydrocarbon production dynamics in the Cuyo Basin.",
+        contact_title: "Contact",
+        contact_heading: "Let's build something together.",
+        contact_text: "I'm open to new opportunities, projects and collaborations related to web development, automation and data.",
+        contact_cv: "View résumé",
     }
 };
 
