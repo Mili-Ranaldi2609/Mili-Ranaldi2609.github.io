@@ -52,10 +52,6 @@ section:hover {
     box-shadow: 0 8px 30px rgba(168, 85, 247, 0.15);
 }
 
-.about-text {
-    color: var(--text-secondary);
-}
-
 .btn-lang {
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
@@ -78,13 +74,6 @@ section:hover {
     color: #fff;
     transform: scale(1.05);
 }
-/* Estilos para enlaces dentro de las tarjetas de proyectos */
-.project-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 
 /* Navbar */
 .navbar {
