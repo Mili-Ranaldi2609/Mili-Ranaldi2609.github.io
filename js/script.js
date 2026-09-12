@@ -1,5 +1,12 @@
 const translations = {
     es: {
+        nav_about: "Sobre mí",
+        nav_skills: "Habilidades",
+        nav_projects: "Proyectos",
+        nav_experience: "Experiencia",
+        nav_education: "Educación",
+        nav_contact: "Contacto",
+        
         about_title: "Sobre Mí",
         about_text: "Desarrolladora Full Stack especializada en arquitectura backend, optimización de procesos operativos e integración de soluciones basadas en datos. Experimentada en la creación de herramientas de automatización personalizadas (RPA), APIs RESTful y gestión de bases de datos relacionales y no relacionales.",
 
@@ -43,6 +50,13 @@ const translations = {
     },
 
     en: {
+        nav_about: "About",
+        nav_skills: "Skills",
+        nav_projects: "Projects",
+        nav_experience: "Experience",
+        nav_education: "Education",
+        nav_contact: "Contact",
+        
         about_title: "About Me",
         about_text: "Full Stack Developer specialized in backend architecture, operational process optimization, and data-driven solutions integration. Experienced in building custom automation tools (RPA), RESTful APIs, and managing relational and non-relational databases.",
 
