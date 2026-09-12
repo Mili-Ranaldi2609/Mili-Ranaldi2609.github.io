@@ -108,7 +108,10 @@ if (copyEmail) {
             const value = copyEmail.querySelector(".contact-value");
             const originalText = value.textContent;
 
-            value.textContent = "¡Email copiado!";
+            value.textContent =
+                currentLang === "es"
+                    ? "¡Email copiado!"
+                    : "Email copied!";
 
             setTimeout(() => {
                 value.textContent = originalText;
