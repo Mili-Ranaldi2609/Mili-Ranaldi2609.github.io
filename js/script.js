@@ -152,3 +152,31 @@ if (navToggle && navLinks) {
         });
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    const menuIcon = menuToggle.querySelector("i");
+
+    // Abrir/Cerrar menú al hacer clic en la hamburguesa
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        
+        // Cambiar el ícono entre barras y cruz (X)
+        if (navLinks.classList.contains("active")) {
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-xmark");
+        } else {
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+        }
+    });
+
+    // Cerrar el menú automáticamente al hacer clic en cualquier enlace
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+        });
+    });
+});
