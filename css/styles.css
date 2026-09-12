@@ -14,6 +14,11 @@
     margin: 0;
     padding: 0;
 }
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -374,34 +379,53 @@ section:hover {
         opacity: 0;
     }
 }
-
 @media (max-width: 850px) {
     .hero {
-        padding: 4.5rem 1.5rem 2rem;
+        padding: 2.5rem 1rem 1.5rem;
     }
 
     .hero-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+        min-height: auto;
     }
 
-    .hero-text {
-        text-align: center;
+    .hero-text,
+    .code-window {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+
+    .hero-role {
+        font-size: 0.95rem;
     }
 
     .hero-description {
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 0.9rem;
+        line-height: 1.65;
     }
 
     .hero-actions {
-        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
     }
 
-    .code-window {
-        max-width: 560px;
+    .code-content {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+@media (max-width: 850px) {
+    .container {
         width: 100%;
-        margin: 0 auto;
+        max-width: 100%;
     }
 }
 /* About */
