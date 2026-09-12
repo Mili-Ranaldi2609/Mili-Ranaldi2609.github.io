@@ -74,6 +74,7 @@ const translations = {
 let currentLang = localStorage.getItem('preferred_lang') || 'es';
 
 function updateLanguage(lang) {
+    document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -120,5 +121,34 @@ if (copyEmail) {
         } catch (error) {
             console.error("No se pudo copiar el email:", error);
         }
+    });
+}
+const navToggle = document.getElementById("nav-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (navToggle && navLinks) {
+
+    navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+
+        const icon = navToggle.querySelector("i");
+
+        if (navLinks.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+
+            const icon = navToggle.querySelector("i");
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        });
     });
 }
