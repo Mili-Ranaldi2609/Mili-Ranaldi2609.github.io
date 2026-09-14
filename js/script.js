@@ -278,7 +278,7 @@ const sections = document.querySelectorAll("section[id]");
 const navItems = document.querySelectorAll(".nav-links a");
 
 function updateActiveNav() {
-    const scrollPosition = window.scrollY + 180;
+    const scrollPosition = window.scrollY + 100;
 
     let currentSection = "";
 
