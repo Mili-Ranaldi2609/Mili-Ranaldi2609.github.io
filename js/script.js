@@ -270,5 +270,37 @@ function updateScrollProgress() {
 window.addEventListener("scroll", updateScrollProgress);
 
 updateScrollProgress();
+/* =========================
+   NAVBAR ACTIVE SECTION
+========================= */
 
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+const sectionObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const currentId = entry.target.getAttribute("id");
+
+                navItems.forEach(link => {
+                    link.classList.remove("active");
+
+                    if (link.getAttribute("href") === `#${currentId}`) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+        });
+    },
+    {
+        root: null,
+        threshold: 0.35,
+        rootMargin: "-20% 0px -50% 0px"
+    }
+);
+
+sections.forEach(section => {
+    sectionObserver.observe(section);
+});
 });
