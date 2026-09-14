@@ -1543,15 +1543,6 @@ img, svg {
 ========================= */
 
 .nav-links a.active {
-    background: linear-gradient(
-        90deg,
-        var(--primary-blue),
-        var(--accent-violet)
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    color: #a855f7;
     font-weight: 600;
 }
