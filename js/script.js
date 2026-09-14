@@ -243,5 +243,32 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach(element => {
     revealObserver.observe(element);
 });
+    /* =========================
+   SCROLL PROGRESS
+========================= */
+
+const progressBar = document.getElementById("scroll-progress-bar");
+
+function updateScrollProgress() {
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+
+    const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const scrollPercentage =
+        documentHeight > 0
+            ? (scrollTop / documentHeight) * 100
+            : 0;
+
+    progressBar.style.width =
+        `${Math.min(scrollPercentage, 100)}%`;
+}
+
+window.addEventListener("scroll", updateScrollProgress);
+
+updateScrollProgress();
 
 });
