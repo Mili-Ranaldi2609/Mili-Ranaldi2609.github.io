@@ -23,8 +23,7 @@ body {
 }
 /* Asegura que el documento no genere desbordamientos raros */
 html, body {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
 }
