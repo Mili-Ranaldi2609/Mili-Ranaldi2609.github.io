@@ -15,30 +15,23 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
-    padding: 0; /* <-- Eliminamos el padding superior de 70px que causaba el desfase */
-}
-/* Asegura que el documento no genere desbordamientos raros */
-html, body {
-    max-width: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
-}
-
-/* Evita que contenedores principales fuercen un alto extra de pantalla */
-section, .main-content, div {
-    max-height: none;
 }
 
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding-top: 90px; /* <-- Trasladamos el respiro aquí para que el contenido no quede debajo del navbar fijo */
+    padding-top: 90px;
 }
-
 h1 {
     font-size: 2.5rem;
     font-weight: 700;
