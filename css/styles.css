@@ -14,13 +14,15 @@
     margin: 0;
     padding: 0;
 }
-html, body {
+html {
     max-width: 100%;
     overflow-x: hidden;
-    /* Asegura que el scroll vertical use la ventana principal */
-    overflow-y: auto; 
+    scroll-behavior: smooth;
 }
+
 body {
+    max-width: 100%;
+    overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
