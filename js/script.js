@@ -277,30 +277,33 @@ updateScrollProgress();
 const sections = document.querySelectorAll("section[id]");
 const navItems = document.querySelectorAll(".nav-links a");
 
-const sectionObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const currentId = entry.target.getAttribute("id");
+function updateActiveNav() {
+    const scrollPosition = window.scrollY + 180;
 
-                navItems.forEach(link => {
-                    link.classList.remove("active");
+    let currentSection = "";
 
-                    if (link.getAttribute("href") === `#${currentId}`) {
-                        link.classList.add("active");
-                    }
-                });
-            }
-        });
-    },
-    {
-        root: null,
-        threshold: 0.35,
-        rootMargin: "-20% 0px -50% 0px"
-    }
-);
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
 
-sections.forEach(section => {
-    sectionObserver.observe(section);
-});
+        if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+        ) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    navItems.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === `#${currentSection}`) {
+            link.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+
+updateActiveNav();
 });
