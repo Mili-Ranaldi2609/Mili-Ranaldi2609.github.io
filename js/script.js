@@ -306,4 +306,31 @@ function updateActiveNav() {
 window.addEventListener("scroll", updateActiveNav);
 
 updateActiveNav();
+    /* =========================
+   BACK TO TOP
+========================= */
+
+const backToTop = document.getElementById("back-to-top");
+
+if (backToTop) {
+
+    function toggleBackToTop() {
+        if (window.scrollY > 500) {
+            backToTop.classList.add("show");
+        } else {
+            backToTop.classList.remove("show");
+        }
+    }
+
+    window.addEventListener("scroll", toggleBackToTop);
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    toggleBackToTop();
+}
 });
