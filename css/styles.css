@@ -15,18 +15,23 @@
     padding: 0;
 }
 
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    /* Asegura que el scroll vertical use la ventana principal */
-    overflow-y: auto; 
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
     padding: 0; /* <-- Eliminamos el padding superior de 70px que causaba el desfase */
+}
+/* Asegura que el documento no genere desbordamientos raros */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Evita que contenedores principales fuercen un alto extra de pantalla */
+section, .main-content, div {
+    max-height: none;
 }
 
 .container {
