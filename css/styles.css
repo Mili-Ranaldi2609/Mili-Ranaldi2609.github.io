@@ -14,24 +14,25 @@
     margin: 0;
     padding: 0;
 }
-html {
+
+html, body {
     max-width: 100%;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    /* Asegura que el scroll vertical use la ventana principal */
+    overflow-y: auto; 
 }
 
 body {
-    max-width: 100%;
-    overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-primary);
-    padding: 70px 0 0;
+    padding: 0; /* <-- Eliminamos el padding superior de 70px que causaba el desfase */
 }
 
 .container {
     max-width: 900px;
     margin: 0 auto;
+    padding-top: 90px; /* <-- Trasladamos el respiro aquí para que el contenido no quede debajo del navbar fijo */
 }
 
 h1 {
