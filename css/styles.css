@@ -1538,3 +1538,24 @@ img, svg {
 
     transition: width 0.08s linear;
 }
+/* =========================
+   ACTIVE NAV LINK
+========================= */
+
+.nav-links a.active {
+    color: var(--primary-blue);
+}
+
+.nav-links a.active span:first-child {
+    color: var(--accent-violet);
+}
+
+.nav-links a.active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 0.3rem;
+    border-radius: 999px;
+    background: var(--gradient);
+}
