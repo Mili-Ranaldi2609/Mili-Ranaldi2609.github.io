@@ -47,6 +47,7 @@ const translations = {
         contact_heading: "¿Construimos algo juntos?",
         contact_text: "Estoy abierta a nuevas oportunidades, proyectos y colaboraciones relacionadas con desarrollo web, automatización y datos.",
         contact_cv: "Ver currículum",
+        footer_center: "Desarrollado con HTML · CSS · JavaScript",
     },
 
     en: {
@@ -97,6 +98,7 @@ const translations = {
         contact_heading: "Let's build something together.",
         contact_text: "I'm open to new opportunities, projects and collaborations related to web development, automation and data.",
         contact_cv: "View résumé",
+        footer_center: "Built with HTML · CSS · JavaScript",
     }
 };
 
