@@ -335,59 +335,130 @@ if (backToTop) {
 
     toggleBackToTop();
 }
-/* =========================
+    /* =========================
    CUSTOM CURSOR
 ========================= */
 
 const cursor = document.querySelector(".custom-cursor");
-const cursorGlow = document.querySelector(".cursor-glow");
 
 if (
     cursor &&
-    cursorGlow &&
     window.matchMedia("(pointer: fine)").matches
 ) {
-    let mouseX = 0;
-    let mouseY = 0;
 
-    let glowX = 0;
-    let glowY = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    let lastTrailTime = 0;
 
     document.addEventListener("mousemove", event => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
 
-        // El punto sigue al mouse inmediatamente
-        cursor.style.left = `${mouseX}px`;
-        cursor.style.top = `${mouseY}px`;
+        const x = event.clientX;
+        const y = event.clientY;
+
+        /* =========================
+           DIRECCIÓN
+        ========================= */
+
+        const deltaX = x - lastX;
+        const deltaY = y - lastY;
+
+        const angle =
+            Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+        cursor.style.left = `${x}px`;
+        cursor.style.top = `${y}px`;
+
+        cursor.style.transform =
+            `translate(-20%, -50%) rotate(${angle}deg)`;
+
+
+        /* =========================
+           ESTELA
+        ========================= */
+
+        const now = performance.now();
+
+        const distance = Math.hypot(
+            x - lastX,
+            y - lastY
+        );
+
+        if (
+            distance > 6 &&
+            now - lastTrailTime > 35
+        ) {
+
+            createTrail(
+                x,
+                y,
+                angle
+            );
+
+            lastTrailTime = now;
+        }
+
+        lastX = x;
+        lastY = y;
     });
 
-    // El círculo exterior sigue al cursor suavemente
-    function animateCursor() {
-        glowX += (mouseX - glowX) * 0.15;
-        glowY += (mouseY - glowY) * 0.15;
 
-        cursorGlow.style.left = `${glowX}px`;
-        cursorGlow.style.top = `${glowY}px`;
+    /* =========================
+       CREAR ESTELA
+    ========================= */
 
-        requestAnimationFrame(animateCursor);
+    function createTrail(x, y, angle) {
+
+        const trail = document.createElement("div");
+
+        trail.classList.add("cursor-trail");
+
+        trail.style.left = `${x}px`;
+        trail.style.top = `${y}px`;
+
+        trail.style.transform =
+            `translate(-50%, -50%) rotate(${angle}deg)`;
+
+        document.body.appendChild(trail);
+
+        setTimeout(() => {
+            trail.remove();
+        }, 350);
     }
 
-    animateCursor();
 
-    // Efecto sobre elementos interactivos
-    const interactiveElements = document.querySelectorAll(
-        "a, button, .contact-item"
-    );
+    /* =========================
+       HOVER
+    ========================= */
+
+    const interactiveElements =
+        document.querySelectorAll(
+            "a, button, .contact-item"
+        );
 
     interactiveElements.forEach(element => {
+
         element.addEventListener("mouseenter", () => {
-            cursorGlow.classList.add("cursor-hover");
+            cursor.classList.add("cursor-hover");
         });
 
         element.addEventListener("mouseleave", () => {
-            cursorGlow.classList.remove("cursor-hover");
+            cursor.classList.remove("cursor-hover");
         });
+
+    });
+
+
+    /* =========================
+       CLICK
+    ========================= */
+
+    document.addEventListener("mousedown", () => {
+        cursor.classList.add("cursor-click");
+    });
+
+    document.addEventListener("mouseup", () => {
+        cursor.classList.remove("cursor-click");
     });
 }
 });
