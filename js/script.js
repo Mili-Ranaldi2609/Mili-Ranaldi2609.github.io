@@ -335,4 +335,59 @@ if (backToTop) {
 
     toggleBackToTop();
 }
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+const cursor = document.querySelector(".custom-cursor");
+const cursorGlow = document.querySelector(".cursor-glow");
+
+if (
+    cursor &&
+    cursorGlow &&
+    window.matchMedia("(pointer: fine)").matches
+) {
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let glowX = 0;
+    let glowY = 0;
+
+    document.addEventListener("mousemove", event => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        // El punto sigue al mouse inmediatamente
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+    });
+
+    // El círculo exterior sigue al cursor suavemente
+    function animateCursor() {
+        glowX += (mouseX - glowX) * 0.15;
+        glowY += (mouseY - glowY) * 0.15;
+
+        cursorGlow.style.left = `${glowX}px`;
+        cursorGlow.style.top = `${glowY}px`;
+
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    // Efecto sobre elementos interactivos
+    const interactiveElements = document.querySelectorAll(
+        "a, button, .contact-item"
+    );
+
+    interactiveElements.forEach(element => {
+        element.addEventListener("mouseenter", () => {
+            cursorGlow.classList.add("cursor-hover");
+        });
+
+        element.addEventListener("mouseleave", () => {
+            cursorGlow.classList.remove("cursor-hover");
+        });
+    });
+}
 });
