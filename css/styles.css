@@ -1683,3 +1683,78 @@ img, svg {
         text-align: center;
     }
 }
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+@media (pointer: fine) {
+
+    body,
+    a,
+    button,
+    .contact-item {
+        cursor: none;
+    }
+
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: var(--accent-violet);
+
+        pointer-events: none;
+        z-index: 99999;
+
+        transform: translate(-50%, -50%);
+
+        box-shadow:
+            0 0 8px var(--accent-violet),
+            0 0 16px rgba(168, 85, 247, 0.4);
+    }
+
+    .cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 28px;
+        height: 28px;
+
+        border: 1px solid rgba(56, 189, 248, 0.5);
+        border-radius: 50%;
+
+        pointer-events: none;
+        z-index: 99998;
+
+        transform: translate(-50%, -50%);
+
+        transition:
+            width 0.2s ease,
+            height 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    /* Cuando pasamos sobre algo clickeable */
+    .cursor-glow.cursor-hover {
+        width: 42px;
+        height: 42px;
+
+        border-color: var(--accent-violet);
+        background: rgba(168, 85, 247, 0.08);
+    }
+}
+
+/* En celulares/tablets no mostramos el cursor personalizado */
+@media (pointer: coarse) {
+    .custom-cursor,
+    .cursor-glow {
+        display: none;
+    }
+}
