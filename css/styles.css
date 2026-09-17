@@ -1724,14 +1724,14 @@ img, svg {
 
     /* Hover sobre links y botones */
     .custom-cursor.cursor-hover {
-        scale: 1.35;
+    scale: 1.12;
 
-        border-left-color: var(--primary-blue);
+    border-left-color: var(--primary-blue);
 
-        filter:
-            drop-shadow(0 0 5px var(--primary-blue))
-            drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
-    }
+    filter:
+        drop-shadow(0 0 4px var(--primary-blue))
+        drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
 
     /* Click */
     .custom-cursor.cursor-click {
