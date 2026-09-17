@@ -1689,11 +1689,10 @@ img, svg {
 
 @media (pointer: fine) {
 
+    html,
     body,
-    a,
-    button,
-    .contact-item {
-        cursor: none;
+    body * {
+        cursor: none !important;
     }
 
     .custom-cursor {
