@@ -355,77 +355,61 @@ if (
 
         const x = event.clientX;
         const y = event.clientY;
-
-        /* =========================
-           DIRECCIÓN
-        ========================= */
-
-        const deltaX = x - lastX;
-        const deltaY = y - lastY;
-
-        const angle =
-            Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
+    
         cursor.style.left = `${x}px`;
         cursor.style.top = `${y}px`;
-
+    
         cursor.style.transform =
-            `translate(-20%, -50%) rotate(${angle}deg)`;
-
-
+            "translate(-20%, -50%)";
+    
+    
         /* =========================
            ESTELA
         ========================= */
-
+    
         const now = performance.now();
-
+    
         const distance = Math.hypot(
             x - lastX,
             y - lastY
         );
-
+    
         if (
             distance > 6 &&
             now - lastTrailTime > 35
         ) {
-
-            createTrail(
-                x,
-                y,
-                angle
-            );
-
+    
+            createTrail(x, y);
+    
             lastTrailTime = now;
         }
-
+    
         lastX = x;
         lastY = y;
-    });
-
+});
 
     /* =========================
        CREAR ESTELA
     ========================= */
 
-    function createTrail(x, y, angle) {
+    function createTrail(x, y) {
 
         const trail = document.createElement("div");
-
+    
         trail.classList.add("cursor-trail");
-
+    
         trail.style.left = `${x}px`;
         trail.style.top = `${y}px`;
-
+    
         trail.style.transform =
-            `translate(-50%, -50%) rotate(${angle}deg)`;
-
+            "translate(-50%, -50%)";
+    
         document.body.appendChild(trail);
-
+    
         setTimeout(() => {
             trail.remove();
         }, 350);
-    }
-
+}
 
     /* =========================
        HOVER
