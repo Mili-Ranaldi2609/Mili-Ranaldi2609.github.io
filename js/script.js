@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+    //estilo del logo 
     const logoText = document.getElementById("logo-text");
 
     if (logoText) {
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 logoText.classList.remove("logo-fade");
             }, 250);
     
-        }, 800);
+        }, 2000);
     }
     /* =========================
        MENÚ MOBILE
