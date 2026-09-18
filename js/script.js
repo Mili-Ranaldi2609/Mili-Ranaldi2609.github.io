@@ -179,7 +179,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const logoText = document.getElementById("logo-text");
 
+    if (logoText) {
+        setTimeout(() => {
+            logoText.classList.add("logo-fade");
+    
+            setTimeout(() => {
+                logoText.textContent = "MR";
+                logoText.classList.remove("logo-fade");
+            }, 250);
+    
+        }, 800);
+    }
     /* =========================
        MENÚ MOBILE
     ========================= */
