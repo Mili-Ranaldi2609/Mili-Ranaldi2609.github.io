@@ -146,6 +146,14 @@ section:hover {
     font-size: 1.4rem;
     cursor: pointer;
 }
+#logo-text {
+    display: inline-block;
+    transition: opacity 0.25s ease;
+}
+
+#logo-text.logo-fade {
+    opacity: 0;
+}
 
 /* Navbar mobile */
 @media (max-width: 768px) {
