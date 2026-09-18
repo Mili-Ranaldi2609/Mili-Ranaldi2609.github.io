@@ -73,12 +73,16 @@ section:hover {
 }
 
 .btn-lang:hover {
-    background: var(--gradient);
+    background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.55),
+        rgba(168, 85, 247, 0.55)
+    );
+
     border-color: transparent;
     color: #fff;
     transform: scale(1.05);
 }
-
 /* Navbar */
 .navbar {
     position: fixed;
@@ -272,9 +276,16 @@ section:hover {
 }
 
 .btn-primary {
-    background: var(--gradient);
+    background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.55),
+        rgba(168, 85, 247, 0.55)
+    );
+
     color: white;
-    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.18);
+
+    box-shadow:
+        0 8px 24px rgba(56, 189, 248, 0.12);
 }
 
 .btn-primary:hover {
