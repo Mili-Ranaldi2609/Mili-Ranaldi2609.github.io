@@ -280,32 +280,63 @@ const sections = document.querySelectorAll("section[id]");
 const navItems = document.querySelectorAll(".nav-links a");
 
 function updateActiveNav() {
-    const scrollPosition = window.scrollY + 100;
+
+    const navbarHeight =
+        document.querySelector(".navbar")?.offsetHeight || 0;
+
+    const scrollPosition =
+        window.scrollY + navbarHeight + 40;
 
     let currentSection = "";
 
     sections.forEach(section => {
+
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const sectionBottom =
+            sectionTop + section.offsetHeight;
 
         if (
             scrollPosition >= sectionTop &&
-            scrollPosition < sectionTop + sectionHeight
+            scrollPosition < sectionBottom
         ) {
-            currentSection = section.getAttribute("id");
+            currentSection = section.id;
         }
     });
 
-    navItems.forEach(link => {
-        link.classList.remove("active");
 
-        if (link.getAttribute("href") === `#${currentSection}`) {
-            link.classList.add("active");
-        }
+    /* Si llegamos al final de la página,
+       siempre activamos Contacto */
+    const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 10;
+
+    if (reachedBottom) {
+        currentSection = "contact";
+    }
+
+
+    navItems.forEach(link => {
+
+        const target =
+            link.getAttribute("href")?.replace("#", "");
+
+        link.classList.toggle(
+            "active",
+            target === currentSection
+        );
     });
 }
 
-window.addEventListener("scroll", updateActiveNav);
+window.addEventListener(
+    "scroll",
+    updateActiveNav,
+    { passive: true }
+);
+
+window.addEventListener(
+    "resize",
+    updateActiveNav
+);
 
 updateActiveNav();
     /* =========================
@@ -408,7 +439,7 @@ if (
     
         setTimeout(() => {
             trail.remove();
-        }, 350);
+        }, 450);
 }
 
     /* =========================
