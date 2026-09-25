@@ -1791,18 +1791,25 @@ img, svg {
         scale: 0.65;
     }
 }
-
+/* =========================
+   CYBER-GIRL
+========================= */
 .cyber-girl {
     position: fixed;
     left: 40px;
-    bottom: 40px;
+    bottom: 25px;
 
-    width: 150px;
-    height: 300px;
+    width: 130px;
+    aspect-ratio: 1 / 2;
 
-    background: red;
+    background-image: url("../assets/cyber-girl/walk-right.png");
+    background-repeat: no-repeat;
+    background-size: 800% 100%;
+    background-position: 0 0;
 
-    z-index: 999999;
+    animation: cyber-walk 0.8s steps(8) infinite;
+
+    z-index: 50;
     pointer-events: none;
 }
 
