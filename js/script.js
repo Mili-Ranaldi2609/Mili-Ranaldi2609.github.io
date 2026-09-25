@@ -487,29 +487,594 @@ if (
     document.addEventListener("mouseup", () => {
         cursor.classList.remove("cursor-click");
     });
+    /* =========================
+       CYBER GIRL
+    ========================= */
+    
     const cyberGirl = document.getElementById("cyber-girl");
+    
+    if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
 
-if (cyberGirl) {
-    const walkFrames = [
-        "../assets/cyber-girl/walk/walk-01.png",
-        "../assets/cyber-girl/walk/walk-02.png",
-        "../assets/cyber-girl/walk/walk-03.png",
-        "../assets/cyber-girl/walk/walk-04.png",
-        "../assets/cyber-girl/walk/walk-05.png",
-        "../assets/cyber-girl/walk/walk-06.png",
-        "../assets/cyber-girl/walk/walk-07.png",
-        "../assets/cyber-girl/walk/walk-08.png",
-        "../assets/cyber-girl/walk/walk-09.png",
-        "../assets/cyber-girl/walk/walk-10.png",
-        "../assets/cyber-girl/walk/walk-11.png",
-    ];
+    /* =========================
+       FRAMES
+    ========================= */
+
+    function createFrames(folder, prefix, total) {
+        return Array.from(
+            { length: total },
+            (_, index) =>
+                `assets/cyber-girl/${folder}/${prefix}-${String(index + 1).padStart(2, "0")}.png`
+        );
+    }
+
+    const animations = {
+        walk: createFrames("walk", "walk", 11),
+        shoot: createFrames("shoot", "shoot", 55),
+        crash: createFrames("crash", "crash", 42),
+        return: createFrames("return", "return", 80)
+    };
+
+
+    /* =========================
+       CONFIGURACIÓN
+    ========================= */
+
+    const WALK_FRAME_TIME = 120;
+    const SHOOT_FRAME_TIME = 55;
+    const CRASH_FRAME_TIME = 70;
+    const RETURN_FRAME_TIME = 70;
+
+    const SHOOT_DELAY = 500;
+
+    // Punto donde comienza el regreso al subir.
+    const RETURN_TRIGGER = 0.50;
+
+    // Posiciones horizontales.
+    const START_X = -40;
+
+    let girlX = START_X;
+
+    let state = "walking";
 
     let currentFrame = 0;
+    let animationTimer = null;
+    let shootTimer = null;
 
-    setInterval(() => {
-        currentFrame = (currentFrame + 1) % walkFrames.length;
-        cyberGirl.src = walkFrames[currentFrame];
-    }, 120);
-}
+    let lastScrollY = window.scrollY;
+    let scrollDirection = "down";
+
+    let reachedBottom = false;
+    let returnStarted = false;
+
+
+    /* =========================
+       UTILIDADES
+    ========================= */
+
+    function getScrollProgress() {
+
+        const maxScroll =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+        if (maxScroll <= 0) return 0;
+
+        return Math.min(
+            Math.max(window.scrollY / maxScroll, 0),
+            1
+        );
+    }
+
+
+    function getGirlWidth() {
+        return cyberGirl.getBoundingClientRect().width;
+    }
+
+
+    function getRightLimit() {
+
+        const girlWidth = getGirlWidth();
+
+        return window.innerWidth -
+            girlWidth -
+            25;
+    }
+
+
+    function setGirlPosition(x) {
+
+        girlX = x;
+
+        cyberGirl.style.transform =
+            `translateX(${girlX}px)`;
+    }
+
+
+    function clearAnimation() {
+
+        if (animationTimer) {
+            clearInterval(animationTimer);
+            animationTimer = null;
+        }
+    }
+
+
+    function clearShootTimer() {
+
+        if (shootTimer) {
+            clearTimeout(shootTimer);
+            shootTimer = null;
+        }
+    }
+
+
+    /* =========================
+       MOSTRAR FRAME
+    ========================= */
+
+    function showFrame(frames, index) {
+
+        if (!frames[index]) return;
+
+        cyberGirl.src = frames[index];
+    }
+
+
+    /* =========================
+       WALK
+    ========================= */
+
+    function startWalking() {
+
+        if (
+            state === "crashing" ||
+            state === "seated" ||
+            state === "returning" ||
+            state === "hidden"
+        ) {
+            return;
+        }
+
+        if (state === "walking" && animationTimer) {
+            return;
+        }
+
+        clearAnimation();
+
+        state = "walking";
+        currentFrame = 0;
+
+        showFrame(animations.walk, currentFrame);
+
+        animationTimer = setInterval(() => {
+
+            currentFrame =
+                (currentFrame + 1) %
+                animations.walk.length;
+
+            showFrame(
+                animations.walk,
+                currentFrame
+            );
+
+        }, WALK_FRAME_TIME);
+    }
+
+
+    /* =========================
+       SHOOT
+    ========================= */
+
+    function startShooting() {
+
+        if (
+            state !== "walking" ||
+            reachedBottom
+        ) {
+            return;
+        }
+
+        clearAnimation();
+        clearShootTimer();
+
+        state = "shooting";
+        currentFrame = 0;
+
+        showFrame(
+            animations.shoot,
+            currentFrame
+        );
+
+        animationTimer = setInterval(() => {
+
+            currentFrame++;
+
+            if (
+                currentFrame >=
+                animations.shoot.length
+            ) {
+
+                clearAnimation();
+
+                // Si mientras disparaba seguimos bajando,
+                // vuelve a caminar.
+                if (!reachedBottom) {
+                    startWalking();
+                }
+
+                return;
+            }
+
+            showFrame(
+                animations.shoot,
+                currentFrame
+            );
+
+        }, SHOOT_FRAME_TIME);
+    }
+
+
+    /* =========================
+       CRASH
+    ========================= */
+
+    function startCrash() {
+
+        if (reachedBottom) return;
+
+        reachedBottom = true;
+
+        clearShootTimer();
+        clearAnimation();
+
+        state = "crashing";
+        currentFrame = 0;
+
+        // La llevamos al borde derecho.
+        setGirlPosition(
+            getRightLimit()
+        );
+
+        showFrame(
+            animations.crash,
+            currentFrame
+        );
+
+        animationTimer = setInterval(() => {
+
+            currentFrame++;
+
+            if (
+                currentFrame >=
+                animations.crash.length
+            ) {
+
+                clearAnimation();
+
+                state = "seated";
+
+                // Mantener último frame.
+                showFrame(
+                    animations.crash,
+                    animations.crash.length - 1
+                );
+
+                return;
+            }
+
+            showFrame(
+                animations.crash,
+                currentFrame
+            );
+
+        }, CRASH_FRAME_TIME);
+    }
+
+
+    /* =========================
+       RETURN
+    ========================= */
+
+    function startReturn() {
+
+        if (
+            state !== "seated" ||
+            returnStarted
+        ) {
+            return;
+        }
+
+        returnStarted = true;
+
+        clearAnimation();
+        clearShootTimer();
+
+        state = "returning";
+        currentFrame = 0;
+
+        showFrame(
+            animations.return,
+            currentFrame
+        );
+
+        animationTimer = setInterval(() => {
+
+            currentFrame++;
+
+            if (
+                currentFrame >=
+                animations.return.length
+            ) {
+
+                clearAnimation();
+
+                /*
+                 * La animación terminó.
+                 * Ahora termina de salir
+                 * completamente por la izquierda.
+                 */
+
+                runOffScreen();
+
+                return;
+            }
+
+            showFrame(
+                animations.return,
+                currentFrame
+            );
+
+            /*
+             * En la segunda mitad del return
+             * ya está corriendo hacia la izquierda.
+             */
+            if (currentFrame > 50) {
+
+                girlX -= 8;
+
+                setGirlPosition(girlX);
+            }
+
+        }, RETURN_FRAME_TIME);
+    }
+
+
+    /* =========================
+       SALIR POR LA IZQUIERDA
+    ========================= */
+
+    function runOffScreen() {
+
+        state = "exiting";
+
+        const exitTimer = setInterval(() => {
+
+            girlX -= 12;
+
+            setGirlPosition(girlX);
+
+            const girlWidth =
+                getGirlWidth();
+
+            /*
+             * Solo desaparece cuando TODO
+             * el cuerpo cruzó el borde.
+             */
+            if (girlX < -girlWidth) {
+
+                clearInterval(exitTimer);
+
+                state = "hidden";
+
+                cyberGirl.style.display =
+                    "none";
+            }
+
+        }, 30);
+    }
+
+
+    /* =========================
+       RESET
+    ========================= */
+
+    function resetCyberGirl() {
+
+        clearAnimation();
+        clearShootTimer();
+
+        reachedBottom = false;
+        returnStarted = false;
+
+        state = "walking";
+
+        currentFrame = 0;
+
+        girlX = START_X;
+
+        cyberGirl.style.display = "block";
+
+        setGirlPosition(girlX);
+
+        showFrame(
+            animations.walk,
+            0
+        );
+
+        startWalking();
+    }
+
+
+    /* =========================
+       MOVIMIENTO SEGÚN SCROLL
+    ========================= */
+
+    function updateGirlPosition() {
+
+        if (
+            reachedBottom ||
+            state === "returning" ||
+            state === "exiting" ||
+            state === "hidden"
+        ) {
+            return;
+        }
+
+        const progress =
+            getScrollProgress();
+
+        const rightLimit =
+            getRightLimit();
+
+        /*
+         * Del 0% al 100% del scroll,
+         * recorre la pantalla.
+         */
+        const x =
+            START_X +
+            (rightLimit - START_X) *
+            progress;
+
+        setGirlPosition(x);
+    }
+
+
+    /* =========================
+       SCROLL
+    ========================= */
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            const currentScrollY =
+                window.scrollY;
+
+            scrollDirection =
+                currentScrollY > lastScrollY
+                    ? "down"
+                    : "up";
+
+            lastScrollY =
+                currentScrollY;
+
+            const progress =
+                getScrollProgress();
+
+
+            /* -------------------------
+               BAJANDO
+            ------------------------- */
+
+            if (
+                scrollDirection === "down" &&
+                !reachedBottom
+            ) {
+
+                clearShootTimer();
+
+                updateGirlPosition();
+
+                if (state !== "shooting") {
+                    startWalking();
+                }
+
+                /*
+                 * Llegó realmente al final.
+                 */
+                if (progress >= 0.995) {
+
+                    startCrash();
+                    return;
+                }
+
+
+                /*
+                 * Si deja de scrollear
+                 * durante 500 ms → dispara.
+                 */
+                shootTimer = setTimeout(() => {
+
+                    if (
+                        scrollDirection === "down" &&
+                        !reachedBottom
+                    ) {
+                        startShooting();
+                    }
+
+                }, SHOOT_DELAY);
+            }
+
+
+            /* -------------------------
+               SUBIENDO
+            ------------------------- */
+
+            if (
+                scrollDirection === "up" &&
+                reachedBottom
+            ) {
+
+                clearShootTimer();
+
+                /*
+                 * Permanece sentada hasta
+                 * llegar aproximadamente al 50%.
+                 */
+                if (
+                    progress <= RETURN_TRIGGER &&
+                    state === "seated"
+                ) {
+                    startReturn();
+                }
+            }
+
+
+            /* -------------------------
+               RESET CERCA DEL TOP
+            ------------------------- */
+
+            if (
+                progress <= 0.01 &&
+                state === "hidden"
+            ) {
+                resetCyberGirl();
+            }
+
+        },
+        { passive: true }
+    );
+
+
+    /* =========================
+       RESIZE
+    ========================= */
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            if (
+                !reachedBottom &&
+                state !== "hidden"
+            ) {
+                updateGirlPosition();
+            }
+        }
+    );
+
+
+    /* =========================
+       INICIO
+    ========================= */
+
+    setGirlPosition(START_X);
+
+    showFrame(
+        animations.walk,
+        0
+    );
+
+    startWalking();
 }
 });
