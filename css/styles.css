@@ -1797,15 +1797,29 @@ img, svg {
 
 .cyber-girl {
     position: fixed;
-    left: 40px;
+
+    /* JS controlará la posición horizontal */
+    left: 0;
     bottom: 25px;
 
-    width: 130px;
-    height: auto;
+    width: auto;
+    height: 145px;
+
+    object-fit: contain;
+    object-position: center bottom;
 
     z-index: 50;
+
     pointer-events: none;
     user-select: none;
+
+    transform: translateX(0);
+    transform-origin: center bottom;
+
+    will-change: transform;
+
+    /* evita que el navegador intente arrastrarla */
+    -webkit-user-drag: none;
 }
 /* =========================
    MOBILE
@@ -1814,7 +1828,8 @@ img, svg {
 @media (pointer: coarse) {
 
     .custom-cursor,
-    .cursor-trail {
+    .cursor-trail,
+    .cyber-girl {
         display: none;
     }
 }
