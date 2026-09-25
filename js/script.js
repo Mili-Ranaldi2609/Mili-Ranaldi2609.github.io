@@ -487,5 +487,26 @@ if (
     document.addEventListener("mouseup", () => {
         cursor.classList.remove("cursor-click");
     });
+    const cyberGirl = document.getElementById("cyber-girl");
+
+if (cyberGirl) {
+    const walkFrames = [
+        "../assets/cyber-girl/walk-01.png",
+        "../assets/cyber-girl/walk-02.png",
+        "../assets/cyber-girl/walk-03.png",
+        "../assets/cyber-girl/walk-04.png",
+        "../assets/cyber-girl/walk-05.png",
+        "../assets/cyber-girl/walk-06.png",
+        "../assets/cyber-girl/walk-07.png",
+        "../assets/cyber-girl/walk-08.png"
+    ];
+
+    let currentFrame = 0;
+
+    setInterval(() => {
+        currentFrame = (currentFrame + 1) % walkFrames.length;
+        cyberGirl.src = walkFrames[currentFrame];
+    }, 120);
+}
 }
 });
