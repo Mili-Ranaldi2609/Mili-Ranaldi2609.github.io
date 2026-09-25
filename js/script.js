@@ -491,14 +491,17 @@ if (
 
 if (cyberGirl) {
     const walkFrames = [
-        "../assets/cyber-girl/walk-01.png",
-        "../assets/cyber-girl/walk-02.png",
-        "../assets/cyber-girl/walk-03.png",
-        "../assets/cyber-girl/walk-04.png",
-        "../assets/cyber-girl/walk-05.png",
-        "../assets/cyber-girl/walk-06.png",
-        "../assets/cyber-girl/walk-07.png",
-        "../assets/cyber-girl/walk-08.png"
+        "../assets/cyber-girl/walk/walk-01.png",
+        "../assets/cyber-girl/walk/walk-02.png",
+        "../assets/cyber-girl/walk/walk-03.png",
+        "../assets/cyber-girl/walk/walk-04.png",
+        "../assets/cyber-girl/walk/walk-05.png",
+        "../assets/cyber-girl/walk/walk-06.png",
+        "../assets/cyber-girl/walk/walk-07.png",
+        "../assets/cyber-girl/walk/walk-08.png",
+        "../assets/cyber-girl/walk/walk-09.png",
+        "../assets/cyber-girl/walk/walk-10.png",
+        "../assets/cyber-girl/walk/walk-11.png",
     ];
 
     let currentFrame = 0;
