@@ -1792,35 +1792,20 @@ img, svg {
     }
 }
 /* =========================
-   CYBER-GIRL
+   CYBER GIRL
 ========================= */
+
 .cyber-girl {
     position: fixed;
     left: 40px;
     bottom: 25px;
 
     width: 130px;
-    aspect-ratio: 1 / 2;
-
-    background-image: url("../assets/cyber-girl/walk-right.png");
-    background-repeat: no-repeat;
-    background-size: 800% 100%;
-    background-position: 0 0;
-
-    animation: cyber-walk 0.8s steps(8) infinite;
+    height: auto;
 
     z-index: 50;
     pointer-events: none;
-}
-
-@keyframes cyber-walk {
-    from {
-        background-position: 0 0;
-    }
-
-    to {
-        background-position: 100% 0;
-    }
+    user-select: none;
 }
 /* =========================
    MOBILE
