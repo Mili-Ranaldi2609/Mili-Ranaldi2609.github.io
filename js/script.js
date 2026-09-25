@@ -487,6 +487,8 @@ if (
     document.addEventListener("mouseup", () => {
         cursor.classList.remove("cursor-click");
     });
+    
+     } 
     /* =========================
        CYBER GIRL
     ========================= */
