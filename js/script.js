@@ -494,25 +494,25 @@ if (
     ========================= */
     const cyberGirl = document.getElementById("cyber-girl");
 
-    if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
-    
-        /* =========================
-           FRAMES
-        ========================= */
-    
-        const createFrames = (folder, prefix, total) =>
-            Array.from(
-                { length: total },
-                (_, index) =>
-                    `assets/cyber-girl/${folder}/${prefix}-${String(index + 1).padStart(2, "0")}.png`
-            );
-    
-        const animations = {
-            walk: createFrames("walk", "walk", 11),
-            shoot: createFrames("shoot", "shoot", 55),
-            crash: createFrames("crash", "crash", 42),
-            return: createFrames("return", "return", 80)
-        };
+if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
+
+    /* =========================
+       FRAMES
+    ========================= */
+
+    const createFrames = (folder, prefix, total) =>
+        Array.from(
+            { length: total },
+            (_, index) =>
+                `assets/cyber-girl/${folder}/${prefix}-${String(index + 1).padStart(2, "0")}.png`
+        );
+
+    const animations = {
+        walk: createFrames("walk", "walk", 11),
+        shoot: createFrames("shoot", "shoot", 55),
+        crash: createFrames("crash", "crash", 42),
+        return: createFrames("return", "return", 80)
+    };
 
 
     /* =========================
@@ -521,15 +521,10 @@ if (
 
     const WALK_FRAME_TIME = 120;
     const SHOOT_FRAME_TIME = 55;
-    const CRASH_FRAME_TIME = 75;
+    const CRASH_FRAME_TIME = 80;
     const RETURN_FRAME_TIME = 90;
 
-    const SHOOT_DELAY = 500;
-
-    // Después del 70% ya no dispara.
-    const SHOOT_LIMIT = 0.70;
-
-    // Al volver subiendo, arranca el regreso al 50%.
+    const SHOOT_TRIGGER = 0.20;
     const RETURN_TRIGGER = 0.50;
 
     const START_X = -40;
@@ -538,41 +533,34 @@ if (
     let girlX = START_X;
 
     let state = "idle";
-
     let walkFrame = 0;
-    let sequenceTimer = null;
+
     let walkTimer = null;
-    let shootTimer = null;
+    let sequenceTimer = null;
     let scrollStopTimer = null;
+    let exitTimer = null;
 
     let lastScrollY = window.scrollY;
     let scrollDirection = "down";
+    let isScrolling = false;
 
+    let hasShot = false;
     let reachedBottom = false;
     let returnStarted = false;
-
-    let isScrolling = false;
 
 
     /* =========================
        PRECARGA
     ========================= */
 
-    const preloadFrames = frames => {
+    function preloadFrames(frames) {
         frames.forEach(src => {
             const image = new Image();
             image.src = src;
         });
-    };
+    }
 
-    // Walk y shoot desde el principio.
-    preloadFrames(animations.walk);
-    preloadFrames(animations.shoot);
-
-    // También empezamos a cargar crash y return
-    // para evitar saltos cuando llegue el momento.
-    preloadFrames(animations.crash);
-    preloadFrames(animations.return);
+    Object.values(animations).forEach(preloadFrames);
 
 
     /* =========================
@@ -603,15 +591,8 @@ if (
     }
 
 
-    function getWalkRightLimit() {
+    function getRightLimit() {
 
-        /*
-         * IMPORTANTE:
-         * No usamos el ancho del frame actual.
-         *
-         * Shoot/crash tienen lienzos transparentes
-         * muchísimo más grandes que walk.
-         */
         return Math.max(
             START_X,
             window.innerWidth - RIGHT_MARGIN
@@ -619,61 +600,11 @@ if (
     }
 
 
-    function updatePositionFromScroll() {
-
-        if (
-            reachedBottom ||
-            state === "shooting" ||
-            state === "crashing" ||
-            state === "seated" ||
-            state === "returning" ||
-            state === "exiting" ||
-            state === "hidden"
-        ) {
-            return;
-        }
-
-        const progress = getScrollProgress();
-
-        const rightLimit =
-            getWalkRightLimit();
-
-        const x =
-            START_X +
-            (rightLimit - START_X) *
-            progress;
-
-        setGirlPosition(x);
-    }
-
-
-    function stopWalk() {
+    function clearWalk() {
 
         if (walkTimer) {
             clearInterval(walkTimer);
             walkTimer = null;
-        }
-
-        if (state === "walking") {
-            state = "idle";
-        }
-    }
-
-
-    function clearShootTimer() {
-
-        if (shootTimer) {
-            clearTimeout(shootTimer);
-            shootTimer = null;
-        }
-    }
-
-
-    function clearScrollStopTimer() {
-
-        if (scrollStopTimer) {
-            clearTimeout(scrollStopTimer);
-            scrollStopTimer = null;
         }
     }
 
@@ -687,6 +618,53 @@ if (
     }
 
 
+    function clearScrollStop() {
+
+        if (scrollStopTimer) {
+            clearTimeout(scrollStopTimer);
+            scrollStopTimer = null;
+        }
+    }
+
+
+    /* =========================
+       POSICIÓN DE CAMINATA
+    ========================= */
+
+    function updateWalkPosition() {
+
+        if (
+            state === "shooting" ||
+            state === "crashing" ||
+            state === "seated" ||
+            state === "returning" ||
+            state === "exiting" ||
+            state === "hidden"
+        ) {
+            return;
+        }
+
+        const progress = getScrollProgress();
+        const rightLimit = getRightLimit();
+
+        /*
+         * Antes del disparo:
+         * 0% → 20%
+         *
+         * Después del disparo:
+         * 20% → 100%
+         *
+         * En ambos casos usamos el progreso real,
+         * pero nunca actualizamos mientras dispara.
+         */
+        const x =
+            START_X +
+            (rightLimit - START_X) * progress;
+
+        setGirlPosition(x);
+    }
+
+
     /* =========================
        WALK
     ========================= */
@@ -694,7 +672,6 @@ if (
     function startWalk() {
 
         if (
-            reachedBottom ||
             state === "shooting" ||
             state === "crashing" ||
             state === "seated" ||
@@ -715,7 +692,13 @@ if (
         walkTimer = setInterval(() => {
 
             if (!isScrolling) {
-                stopWalk();
+
+                clearWalk();
+
+                if (state === "walking") {
+                    state = "idle";
+                }
+
                 return;
             }
 
@@ -730,35 +713,41 @@ if (
     }
 
 
+    function stopWalk() {
+
+        clearWalk();
+
+        if (state === "walking") {
+            state = "idle";
+        }
+    }
+
+
     /* =========================
-       SHOOT
+       SHOOT — UNA SOLA VEZ
+       AL 20%
     ========================= */
 
     function startShoot() {
 
-        const progress =
-            getScrollProgress();
-
         if (
+            hasShot ||
             reachedBottom ||
-            progress >= SHOOT_LIMIT ||
             state === "shooting" ||
             state === "crashing" ||
             state === "seated" ||
-            state === "returning" ||
-            state === "hidden"
+            state === "returning"
         ) {
             return;
         }
 
+        hasShot = true;
+
         /*
-         * girlX NO cambia.
-         *
-         * El personaje queda exactamente
-         * donde dejó de caminar.
+         * Congelamos la posición EXACTA
+         * donde llegó al 20%.
          */
         stopWalk();
-        clearShootTimer();
         clearSequence();
 
         state = "shooting";
@@ -776,17 +765,19 @@ if (
 
                 clearSequence();
 
-                /*
-                 * Al terminar NO empezamos
-                 * a caminar automáticamente.
-                 *
-                 * Solo caminará cuando vuelva
-                 * a existir scroll real.
-                 */
                 state = "idle";
 
                 cyberGirl.src =
                     animations.walk[walkFrame];
+
+                /*
+                 * Si el usuario todavía está
+                 * scrolleando, retomamos walk.
+                 */
+                if (isScrolling) {
+                    updateWalkPosition();
+                    startWalk();
+                }
 
                 return;
             }
@@ -807,23 +798,21 @@ if (
         if (reachedBottom) return;
 
         reachedBottom = true;
+        isScrolling = false;
 
-        clearShootTimer();
-        clearScrollStopTimer();
+        clearScrollStop();
         stopWalk();
         clearSequence();
 
-        /*
-         * NO tocamos girlX.
-         *
-         * La posición queda congelada.
-         * El movimiento del choque y caída
-         * ya existe dentro de los frames.
-         */
         state = "crashing";
 
         let frame = 0;
 
+        /*
+         * girlX queda congelado.
+         * El movimiento del choque está
+         * dentro de los propios frames.
+         */
         cyberGirl.src =
             animations.crash[0];
 
@@ -868,20 +857,22 @@ if (
 
         returnStarted = true;
 
-        clearShootTimer();
-        clearScrollStopTimer();
-        stopWalk();
+        clearWalk();
         clearSequence();
+        clearScrollStop();
 
         state = "returning";
 
         let frame = 0;
 
-        /*
-         * Durante levantarse, sacudirse
-         * y girar NO movemos girlX.
-         */
         const returnStartX = girlX;
+
+        /*
+         * Según nuestro video,
+         * aproximadamente acá empieza
+         * la parte de correr.
+         */
+        const RUN_START_FRAME = 50;
 
         cyberGirl.src =
             animations.return[0];
@@ -893,9 +884,7 @@ if (
             if (frame >= animations.return.length) {
 
                 clearSequence();
-
                 runOffScreen();
-
                 return;
             }
 
@@ -904,38 +893,31 @@ if (
 
 
             /*
-             * Aproximadamente desde acá
-             * comienza la carrera hacia la izquierda.
+             * Hasta RUN_START_FRAME:
+             * sentada → se levanta →
+             * se sacude → gira.
              *
-             * Primero dejamos que los frames
-             * de levantarse/girar se vean completos.
+             * girlX NO cambia.
              */
-            const RUN_START_FRAME = 50;
-
             if (frame >= RUN_START_FRAME) {
 
-                const runFrames =
+                const totalRunFrames =
                     animations.return.length -
                     RUN_START_FRAME;
 
                 const runProgress =
                     (frame - RUN_START_FRAME) /
-                    runFrames;
+                    totalRunFrames;
 
-                /*
-                 * Movimiento suave mientras
-                 * los frames de carrera siguen
-                 * reproduciéndose completos.
-                 */
                 const targetX =
                     -window.innerWidth * 0.35;
 
-                girlX =
+                const x =
                     returnStartX +
                     (targetX - returnStartX) *
                     runProgress;
 
-                setGirlPosition(girlX);
+                setGirlPosition(x);
             }
 
         }, RETURN_FRAME_TIME);
@@ -943,18 +925,18 @@ if (
 
 
     /* =========================
-       SALIDA FINAL
+       SALIDA IZQUIERDA
     ========================= */
 
     function runOffScreen() {
 
         state = "exiting";
 
-        /*
-         * Dejamos visible el último frame
-         * y terminamos de sacarla suavemente.
-         */
-        const exitTimer = setInterval(() => {
+        if (exitTimer) {
+            clearInterval(exitTimer);
+        }
+
+        exitTimer = setInterval(() => {
 
             girlX -= 10;
 
@@ -966,6 +948,7 @@ if (
             if (girlX < -girlWidth) {
 
                 clearInterval(exitTimer);
+                exitTimer = null;
 
                 state = "hidden";
 
@@ -983,19 +966,24 @@ if (
 
     function resetCyberGirl() {
 
-        clearShootTimer();
-        clearScrollStopTimer();
+        clearWalk();
         clearSequence();
-        stopWalk();
+        clearScrollStop();
 
+        if (exitTimer) {
+            clearInterval(exitTimer);
+            exitTimer = null;
+        }
+
+        hasShot = false;
         reachedBottom = false;
         returnStarted = false;
 
         isScrolling = false;
 
         state = "idle";
-
         walkFrame = 0;
+
         girlX = START_X;
 
         cyberGirl.style.display =
@@ -1043,77 +1031,68 @@ if (
 
                 isScrolling = true;
 
-                clearShootTimer();
-                clearScrollStopTimer();
+                clearScrollStop();
 
                 /*
-                 * Mientras dispara,
-                 * NO movemos la posición.
-                 */
-                if (state !== "shooting") {
-
-                    updatePositionFromScroll();
-
-                    startWalk();
-                }
-
-
-                /*
-                 * Fondo real:
-                 * empieza crash inmediatamente.
+                 * 1. Llegó al fondo.
+                 * Crash tiene prioridad.
                  */
                 if (progress >= 0.995) {
 
-                    isScrolling = false;
-
                     startCrash();
-
                     return;
                 }
 
 
                 /*
-                 * Detectar cuándo realmente
-                 * dejó de scrollear.
+                 * 2. Al cruzar 20%:
+                 * SHOOT una sola vez.
+                 */
+                if (
+                    progress >= SHOOT_TRIGGER &&
+                    !hasShot
+                ) {
+
+                    startShoot();
+                    return;
+                }
+
+
+                /*
+                 * 3. Caminata normal.
+                 *
+                 * Mientras shoot está activo,
+                 * NO tocamos girlX.
+                 */
+                if (state !== "shooting") {
+
+                    updateWalkPosition();
+                    startWalk();
+                }
+
+
+                /*
+                 * Si pasan 120 ms sin nuevos
+                 * eventos de scroll, congelamos
+                 * los pies.
                  */
                 scrollStopTimer =
                     setTimeout(() => {
 
                         isScrolling = false;
 
-                        stopWalk();
-
-                        /*
-                         * Solo puede disparar
-                         * antes del 70%.
-                         */
                         if (
-                            getScrollProgress() <
-                                SHOOT_LIMIT &&
-                            !reachedBottom
+                            state === "walking"
                         ) {
-
-                            shootTimer =
-                                setTimeout(() => {
-
-                                    if (
-                                        !isScrolling &&
-                                        !reachedBottom &&
-                                        getScrollProgress() <
-                                            SHOOT_LIMIT
-                                    ) {
-                                        startShoot();
-                                    }
-
-                                }, SHOOT_DELAY);
+                            stopWalk();
                         }
 
-                    }, 100);
+                    }, 120);
             }
 
 
             /* =========================
-               SUBIENDO
+               SUBIENDO DESPUÉS DEL CRASH
             ========================= */
 
             if (
@@ -1123,12 +1102,12 @@ if (
 
                 isScrolling = false;
 
-                clearShootTimer();
-                clearScrollStopTimer();
+                clearScrollStop();
+                stopWalk();
 
                 /*
-                 * Hasta el 50% permanece
-                 * sentada.
+                 * Permanece sentada hasta
+                 * cruzar el 50%.
                  */
                 if (
                     progress <= RETURN_TRIGGER &&
@@ -1140,7 +1119,7 @@ if (
 
 
             /* =========================
-               RESET ARRIBA
+               RESET EN EL TOP
             ========================= */
 
             if (
@@ -1168,7 +1147,7 @@ if (
                 state !== "shooting" &&
                 state !== "hidden"
             ) {
-                updatePositionFromScroll();
+                updateWalkPosition();
             }
 
         }
