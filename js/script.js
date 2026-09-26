@@ -519,7 +519,8 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
        CONFIGURACIÓN
     ========================= */
 
-    const WALK_FRAME_TIME = 120;
+    const WALK_FRAME_TIME_MIN = 45;   // scroll rápido
+    const WALK_FRAME_TIME_MAX = 130;  // scroll lento
     const SHOOT_FRAME_TIME = 55;
     const CRASH_FRAME_TIME = 80;
     const RETURN_FRAME_TIME = 90;
@@ -543,6 +544,9 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
     let lastScrollY = window.scrollY;
     let scrollDirection = "down";
     let isScrolling = false;
+
+    let scrollSpeed = 0;
+    let lastWalkFrameTime = 0;
 
     let hasShot = false;
     let reachedBottom = false;
@@ -602,11 +606,11 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
 
     function clearWalk() {
 
-        if (walkTimer) {
-            clearInterval(walkTimer);
-            walkTimer = null;
-        }
+    if (walkTimer) {
+        cancelAnimationFrame(walkTimer);
+        walkTimer = null;
     }
+}
 
 
     function clearSequence() {
@@ -668,39 +672,52 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
     /* =========================
        WALK
     ========================= */
-
     function startWalk() {
 
+    if (
+        state === "shooting" ||
+        state === "crashing" ||
+        state === "seated" ||
+        state === "returning" ||
+        state === "exiting" ||
+        state === "hidden"
+    ) {
+        return;
+    }
+
+    state = "walking";
+
+    if (walkTimer) return;
+
+    lastWalkFrameTime = performance.now();
+
+    function animateWalk(time) {
+
         if (
-            state === "shooting" ||
-            state === "crashing" ||
-            state === "seated" ||
-            state === "returning" ||
-            state === "exiting" ||
-            state === "hidden"
+            !isScrolling ||
+            state !== "walking"
         ) {
+            walkTimer = null;
             return;
         }
 
-        state = "walking";
+        /*
+         * Cuanto más rápido scrolleamos,
+         * menos tiempo dejamos entre frames.
+         */
+        const speedFactor =
+            Math.min(scrollSpeed / 80, 1);
 
-        if (walkTimer) return;
+        const frameTime =
+            WALK_FRAME_TIME_MAX -
+            (
+                WALK_FRAME_TIME_MAX -
+                WALK_FRAME_TIME_MIN
+            ) * speedFactor;
 
-        cyberGirl.src =
-            animations.walk[walkFrame];
-
-        walkTimer = setInterval(() => {
-
-            if (!isScrolling) {
-
-                clearWalk();
-
-                if (state === "walking") {
-                    state = "idle";
-                }
-
-                return;
-            }
+        if (
+            time - lastWalkFrameTime >= frameTime
+        ) {
 
             walkFrame =
                 (walkFrame + 1) %
@@ -709,8 +726,16 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
             cyberGirl.src =
                 animations.walk[walkFrame];
 
-        }, WALK_FRAME_TIME);
+            lastWalkFrameTime = time;
+        }
+
+        walkTimer =
+            requestAnimationFrame(animateWalk);
     }
+
+    walkTimer =
+        requestAnimationFrame(animateWalk);
+}
 
 
     function stopWalk() {
@@ -1006,6 +1031,12 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
 
             const currentScrollY =
                 window.scrollY;
+            const scrollDelta =
+                Math.abs(currentScrollY - lastScrollY);
+            
+            scrollSpeed =
+                scrollSpeed * 0.65 +
+                scrollDelta * 0.35;
 
             if (currentScrollY > lastScrollY) {
                 scrollDirection = "down";
