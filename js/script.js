@@ -521,7 +521,8 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
 
     const WALK_FRAME_TIME_MIN = 45;   // scroll rápido
     const WALK_FRAME_TIME_MAX = 130;  // scroll lento
-    const SHOOT_FRAME_TIME = 55;
+    const SHOOT_START = 0.20;
+    const SHOOT_END = 0.40;
     const CRASH_FRAME_TIME = 80;
     const RETURN_FRAME_TIME = 90;
 
@@ -753,65 +754,68 @@ if (cyberGirl && window.matchMedia("(pointer: fine)").matches) {
        AL 20%
     ========================= */
 
-    function startShoot() {
+   function updateShootFromScroll(progress) {
 
-        if (
-            hasShot ||
-            reachedBottom ||
-            state === "shooting" ||
-            state === "crashing" ||
-            state === "seated" ||
-            state === "returning"
-        ) {
-            return;
-        }
+    if (
+        reachedBottom ||
+        hasShot
+    ) {
+        return;
+    }
 
-        hasShot = true;
+    /*
+     * Todavía no llegó al disparo.
+     */
+    if (progress < SHOOT_START) {
+        return;
+    }
 
-        /*
-         * Congelamos la posición EXACTA
-         * donde llegó al 20%.
-         */
+    /*
+     * Entramos en la secuencia SHOOT.
+     */
+    if (progress < SHOOT_END) {
+
         stopWalk();
-        clearSequence();
 
         state = "shooting";
 
-        let frame = 0;
+        /*
+         * Convertimos:
+         *
+         * 20% scroll = frame 0
+         * 40% scroll = frame 54
+         */
+        const shootProgress =
+            (progress - SHOOT_START) /
+            (SHOOT_END - SHOOT_START);
+
+        const frame =
+            Math.min(
+                Math.floor(
+                    shootProgress *
+                    animations.shoot.length
+                ),
+                animations.shoot.length - 1
+            );
 
         cyberGirl.src =
-            animations.shoot[0];
+            animations.shoot[frame];
 
-        sequenceTimer = setInterval(() => {
-
-            frame++;
-
-            if (frame >= animations.shoot.length) {
-
-                clearSequence();
-
-                state = "idle";
-
-                cyberGirl.src =
-                    animations.walk[walkFrame];
-
-                /*
-                 * Si el usuario todavía está
-                 * scrolleando, retomamos walk.
-                 */
-                if (isScrolling) {
-                    updateWalkPosition();
-                    startWalk();
-                }
-
-                return;
-            }
-
-            cyberGirl.src =
-                animations.shoot[frame];
-
-        }, SHOOT_FRAME_TIME);
+        return;
     }
+
+    /*
+     * Ya recorrió TODO shoot.
+     */
+    if (!hasShot) {
+
+        hasShot = true;
+        state = "idle";
+
+        cyberGirl.src =
+            animations.walk[walkFrame];
+    }
+}
 
 
     /* =========================
