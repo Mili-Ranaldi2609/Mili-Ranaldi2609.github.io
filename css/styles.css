@@ -207,7 +207,7 @@ section:hover {
     background:
         radial-gradient(circle at top right, rgba(168, 85, 247, 0.14), transparent 35%),
         radial-gradient(circle at bottom left, rgba(56, 189, 248, 0.12), transparent 35%),
-        var(--card-bg);
+        rgba(15, 23, 42, 0.7);
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
