@@ -1837,6 +1837,12 @@ img, svg {
    CYBER MOTO BACKGROUND
 ========================= */
 
+/* Mantiene el video detrás del contenido */
+body {
+    isolation: isolate;
+}
+
+/* Contenedor del fondo animado */
 .moto-background {
     position: fixed;
     inset: 0;
@@ -1848,23 +1854,24 @@ img, svg {
     pointer-events: none;
 }
 
+/* Video de la motociclista */
 .moto-background video {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
 
-/* Oscurecemos para mantener legibles los textos */
-
+/* Capa oscura para mantener legibles los textos */
 .moto-background::after {
     content: "";
     position: absolute;
     inset: 0;
-
     background: linear-gradient(
         to bottom,
-        rgba(8, 8, 20, 0.55),
-        rgba(8, 8, 20, 0.75)
+        rgba(8, 8, 20, 0.35),
+        rgba(8, 8, 20, 0.55)
     );
+    pointer-events: none;
 }
