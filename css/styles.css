@@ -1814,19 +1814,17 @@ img, svg {
     }
 }
 /* =========================
-   CYBER MOTO BACKGROUND
+   CYBER MOTO BACKGROUND (Fijo global)
 ========================= */
 
-/* Mantiene el video detrás del contenido */
 body {
     isolation: isolate;
 }
 
-/* Contenedor del fondo animado */
 .moto-background {
     position: fixed;
     inset: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     height: 100dvh;
     z-index: -1;
@@ -1834,7 +1832,6 @@ body {
     pointer-events: none;
 }
 
-/* Video de la motociclista */
 .moto-background video {
     display: block;
     width: 100%;
@@ -1843,7 +1840,6 @@ body {
     object-position: center;
 }
 
-/* Capa oscura para mantener legibles los textos */
 .moto-background::after {
     content: "";
     position: absolute;
@@ -1855,16 +1851,19 @@ body {
     );
     pointer-events: none;
 }
-    /* =========================
-   CYBER MOTO - MOBILE
+
+/* =========================
+   CYBER MOTO - MOBILE FIX
 ========================= */
 
 @media (max-width: 768px) {
-
+    /* Forzamos que en mobile el fondo siga siendo fijo y no ocupe espacio en el flujo */
     .moto-background {
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
     }
 
     .moto-background video {
@@ -1874,82 +1873,7 @@ body {
         object-position: center center;
     }
 
-    /* Oscurecemos un poco más para leer mejor */
     .moto-background::after {
-        background: rgba(8, 8, 20, 0.45);
-    }
-}
-/* =========================
-   CYBER MOTO - MOBILE FIX
-========================= */
-
-@media screen and (max-width: 768px) {
-
-    /* Fondo fijo, detrás del portfolio */
-    .moto-background {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .moto-background video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    /* Contenido adaptado al ancho del celular */
-    .container {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        padding: 80px 16px 0;
-        margin: 0 auto;
-    }
-
-    .hero {
-        width: 100%;
-        max-width: 100%;
-        padding: 2rem 1rem;
-    }
-
-    .hero-content {
-        grid-template-columns: minmax(0, 1fr);
-        min-width: 0;
-    }
-
-    .hero-text,
-    .code-window {
-        min-width: 0;
-        max-width: 100%;
-    }
-
-    .hero h1 {
-        font-size: clamp(1.8rem, 8vw, 2.5rem);
-        overflow-wrap: anywhere;
-    }
-
-    .hero-role,
-    .hero-description {
-        overflow-wrap: anywhere;
-    }
-
-    section {
-        width: 100%;
-        min-width: 0;
-        max-width: 100%;
-    }
-
-    .about-content,
-    .contact-content,
-    .projects-section .projects-grid {
-        grid-template-columns: minmax(0, 1fr);
+        background: rgba(8, 8, 20, 0.55);
     }
 }
