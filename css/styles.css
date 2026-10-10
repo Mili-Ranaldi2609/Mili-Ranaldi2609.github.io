@@ -1807,18 +1807,59 @@ img, svg {
 ========================= */
 
 @media (pointer: coarse) {
-
+    
     .custom-cursor,
     .cursor-trail {
         display: none;
     }
 }
 /* =========================
-   MOBILE - SIN VIDEO
+   CYBER MOTO BACKGROUND
 ========================= */
 
-@media screen and (max-width: 768px) {
+body {
+    isolation: isolate;
+}
+
+.moto-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.moto-background video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.moto-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(8, 8, 20, 0.35),
+        rgba(8, 8, 20, 0.55)
+    );
+    pointer-events: none;
+}
+
+/* =========================
+   CYBER MOTO - SOLO MOBILE
+========================= */
+
+@media screen and (max-width: 900px) {
+
     .moto-background {
-        display: none !important;
+        display: none;
     }
+
 }
