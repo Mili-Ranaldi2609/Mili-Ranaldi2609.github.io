@@ -1879,3 +1879,9 @@ body {
         background: rgba(8, 8, 20, 0.45);
     }
 }
+    /* PRUEBA TEMPORAL - SOLO CELULAR */
+@media screen and (max-width: 768px) {
+    .moto-background {
+        display: none !important;
+    }
+}
