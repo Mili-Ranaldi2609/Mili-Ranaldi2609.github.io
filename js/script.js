@@ -129,6 +129,20 @@ function updateLanguage(lang) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    /* =========================
+       CYBER MOTO - SOLO DESKTOP
+    ========================= */
+    
+    const motoBackground = document.querySelector(".moto-background");
+    
+    if (motoBackground) {
+        const esMobile = window.matchMedia("(max-width: 900px)").matches;
+        const esTactil = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    
+        if (esMobile || esTactil) {
+            motoBackground.remove();
+        }
+    }
 
     /* =========================
        IDIOMA
