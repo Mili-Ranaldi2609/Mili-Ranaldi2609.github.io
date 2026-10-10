@@ -1814,7 +1814,7 @@ img, svg {
     }
 }
 /* =========================
-   CYBER MOTO BACKGROUND (Fijo global y robusto)
+   CYBER MOTO BACKGROUND
 ========================= */
 
 body {
@@ -1823,9 +1823,8 @@ body {
 
 .moto-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
+    inset: 0;
+    width: 100%;
     height: 100vh;
     height: 100dvh;
     z-index: -1;
@@ -1834,15 +1833,11 @@ body {
 }
 
 .moto-background video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .moto-background::after {
@@ -1855,33 +1850,4 @@ body {
         rgba(8, 8, 20, 0.55)
     );
     pointer-events: none;
-}
-
-/* =========================
-   CYBER MOTO - MOBILE FIX
-========================= */
-
-@media (max-width: 768px) {
-    .moto-background {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-    }
-
-    .moto-background video {
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-    }
-
-    .moto-background::after {
-        background: rgba(8, 8, 20, 0.55);
-    }
 }
